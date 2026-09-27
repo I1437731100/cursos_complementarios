@@ -1,0 +1,504 @@
+[
+  {
+    "id": "fisica10",
+    "emoji": "⚛️",
+    "name": "Física 10mo",
+    "subject": "Física",
+    "grade": "10mo",
+    "frequency": "Semanal",
+    "center": "IPU Roberto Leonardo Roque Nuñez",
+    "teacher": "Ing. Isniel Portela Hernández",
+    "guides": [
+      {
+        "n": 1,
+        "title": "Introducción a la Unidad 1: Magnitudes físicas. Magnitudes escalares y vectoriales. Operaciones con vectores.",
+        "align": "Semana 1 · U1",
+        "lab": "",
+        "eval": "Oral"
+      },
+      {
+        "n": 2,
+        "title": "Cinemática. Movimiento mecánico. MRU.",
+        "align": "Semana 4 · U2",
+        "lab": "",
+        "eval": "Oral"
+      },
+      {
+        "n": 3,
+        "title": "MRUV. Ecuaciones y gráficas.",
+        "align": "Semana 6 · U2",
+        "lab": "",
+        "eval": "ACS 3"
+      },
+      {
+        "n": 4,
+        "title": "Ejercitación MRU y MRUV.",
+        "align": "Semana 7 · U2",
+        "lab": "",
+        "eval": "ACS 4"
+      },
+      {
+        "n": 5,
+        "title": "Ejercitación gráficas y ecuaciones cinemáticas.",
+        "align": "Semana 6 · U2",
+        "lab": "",
+        "eval": "ACS 5"
+      },
+      {
+        "n": 6,
+        "title": "Movimiento de proyectiles. MCU. Desplazamiento.",
+        "align": "Semana 8 · U2",
+        "lab": "",
+        "eval": "ACS 6"
+      },
+      {
+        "n": 7,
+        "title": "Velocidad angular y lineal. Aceleración angular y centrípeta.",
+        "align": "Semana 9 · U2",
+        "lab": "",
+        "eval": "ACS 7"
+      },
+      {
+        "n": 8,
+        "title": "Ejercitación MCU.",
+        "align": "Semana 10 · U2",
+        "lab": "",
+        "eval": "ACS 8"
+      },
+      {
+        "n": 9,
+        "title": "Ley de Gravitación Universal. Ley de Inercia. Inercialidad y masa.",
+        "align": "Semana 11 · U3",
+        "lab": "",
+        "eval": "ACS 9"
+      },
+      {
+        "n": 10,
+        "title": "Segunda Ley de Newton. Fuerza resultante.",
+        "align": "Semana 11 · U3",
+        "lab": "",
+        "eval": "ACS 10"
+      },
+      {
+        "n": 11,
+        "title": "Tercera Ley de Newton. Tipos de fuerzas: gravedad, elástica, rozamiento, normal.",
+        "align": "Semana 12 · U3",
+        "lab": "Lab 1",
+        "eval": "ACS 11"
+      },
+      {
+        "n": 12,
+        "title": "Resolución de ejercicios: fuerza paralela al plano sin y con fricción.",
+        "align": "Semana 13 · U3",
+        "lab": "",
+        "eval": "ACS 12"
+      },
+      {
+        "n": 13,
+        "title": "Resolución de ejercicios: fuerza formando ángulo con el plano. Plano inclinado.",
+        "align": "Semana 14 · U3",
+        "lab": "",
+        "eval": "ACS 13"
+      },
+      {
+        "n": 14,
+        "title": "Sistemas de cuerpos unidos por cuerdas.",
+        "align": "Semana 16 · U3",
+        "lab": "",
+        "eval": "ACS 14"
+      },
+      {
+        "n": 15,
+        "title": "Impulso de una fuerza. Cantidad de movimiento lineal.",
+        "align": "Semana 20 · U4",
+        "lab": "Lab 2",
+        "eval": "ACS 15"
+      },
+      {
+        "n": 16,
+        "title": "Relación impulso-cantidad de movimiento. Conservación. Centro de masa.",
+        "align": "Semana 21 · U4",
+        "lab": "",
+        "eval": "ACS 16"
+      },
+      {
+        "n": 17,
+        "title": "Movimiento reactivo. Resolución de ejercicios.",
+        "align": "Semana 22 · U4",
+        "lab": "",
+        "eval": "ACS 17"
+      },
+      {
+        "n": 18,
+        "title": "Resolución de ejercicios integradores.",
+        "align": "Semana 23 · U4",
+        "lab": "",
+        "eval": "ACS 18"
+      },
+      {
+        "n": 19,
+        "title": "Trabajo mecánico. Trabajo de un sistema de fuerzas. Relación trabajo-energía cinética.",
+        "align": "Semana 25 · U5",
+        "lab": "",
+        "eval": "ACS 19"
+      },
+      {
+        "n": 20,
+        "title": "Trabajo de fuerzas conservativas: gravedad y elástica. Energías potenciales.",
+        "align": "Semana 26 · U5",
+        "lab": "Lab 3",
+        "eval": "ACS 20"
+      },
+      {
+        "n": 21,
+        "title": "Fuerzas no conservativas. Trabajo de la fuerza de rozamiento.",
+        "align": "Semana 26 · U5",
+        "lab": "",
+        "eval": "ACS 21"
+      },
+      {
+        "n": 22,
+        "title": "Ley de conservación de la energía mecánica. Choques.",
+        "align": "Semana 27 · U5",
+        "lab": "",
+        "eval": "ACS 22"
+      },
+      {
+        "n": 23,
+        "title": "Sólido rígido. Ángulo de giro. Velocidad y aceleración angular.",
+        "align": "Semana 28 · U6",
+        "lab": "",
+        "eval": "ACS 23"
+      },
+      {
+        "n": 24,
+        "title": "Energía cinética rotacional. Momento de inercia. Teorema de Steiner.",
+        "align": "Semana 29 · U6",
+        "lab": "Lab 4",
+        "eval": "ACS 24"
+      },
+      {
+        "n": 25,
+        "title": "Torque. Brazo de una fuerza. Ecuación fundamental de la dinámica de rotación.",
+        "align": "Semana 30 · U6",
+        "lab": "",
+        "eval": "ACS 25"
+      },
+      {
+        "n": 26,
+        "title": "Cantidad de movimiento angular. Conservación. Resolución de ejercicios.",
+        "align": "Semana 31 · U6",
+        "lab": "",
+        "eval": "ACS 26"
+      },
+      {
+        "n": 27,
+        "title": "Movimiento oscilatorio. MAS. Análisis energético.",
+        "align": "Semana 32 · U7",
+        "lab": "",
+        "eval": "ACS 27"
+      },
+      {
+        "n": 28,
+        "title": "Cinemática del MAS. Gráficas x(t), v(t), a(t).",
+        "align": "Semana 33 · U7",
+        "lab": "Lab 5",
+        "eval": "ACS 28"
+      },
+      {
+        "n": 29,
+        "title": "Dinámica del MAS. Sistema cuerpo-resorte y péndulo simple.",
+        "align": "Semana 33 · U7",
+        "lab": "",
+        "eval": "ACS 29"
+      },
+      {
+        "n": 30,
+        "title": "Energía en el MAS. Oscilaciones amortiguadas, forzadas y resonancia.",
+        "align": "Semana 34 · U7",
+        "lab": "",
+        "eval": "ACS 30"
+      },
+      {
+        "n": 31,
+        "title": "Ondas mecánicas: características, tipos y propagación.",
+        "align": "Semana 36 · U8",
+        "lab": "",
+        "eval": "ACS 31"
+      },
+      {
+        "n": 32,
+        "title": "Ecuación del movimiento ondulatorio. Propiedades de las ondas.",
+        "align": "Semana 37 · U8",
+        "lab": "",
+        "eval": "ACS 32"
+      },
+      {
+        "n": 33,
+        "title": "Ondas estacionarias.",
+        "align": "Semana 37 · U8",
+        "lab": "Lab 6",
+        "eval": "ACS 33"
+      },
+      {
+        "n": 34,
+        "title": "Efecto Doppler. Resolución de ejercicios.",
+        "align": "Semana 38 · U8",
+        "lab": "",
+        "eval": "ACS 34"
+      },
+      {
+        "n": 35,
+        "title": "Repaso integrador Unidades 3–4.",
+        "align": "Semana 39 · Consolidación",
+        "lab": "",
+        "eval": "ACS 35"
+      },
+      {
+        "n": 36,
+        "title": "Repaso integrador Unidades 5–6.",
+        "align": "Semana 39 · Consolidación",
+        "lab": "",
+        "eval": "ACS 36"
+      }
+    ],
+    "note": "ACS (Actividad de Control Sistemático): la calificación automática sobre 20 puntos que genera la guía es la nota de la ACS. Se envía al profesor por WhatsApp y se registra como evaluación sistemática."
+  },
+  {
+    "id": "matefis9",
+    "emoji": "📐",
+    "name": "Matemática y Física 9no",
+    "subject": "Matemática y Física",
+    "grade": "9no",
+    "frequency": "Semanal",
+    "center": "ESBU Gil Augusto González",
+    "teacher": "Ing. Isniel Portela Hernández",
+    "guides": [
+      {
+        "n": 1,
+        "title": "Matemática: Números reales. Operaciones. Propiedades.",
+        "align": "Semana 1 · M",
+        "lab": "",
+        "eval": "Oral"
+      },
+      {
+        "n": 2,
+        "title": "Física: Introducción. Magnitudes. Unidades. Notación científica.",
+        "align": "Semana 2 · F",
+        "lab": "",
+        "eval": "Oral"
+      },
+      {
+        "n": 3,
+        "title": "Matemática: Cálculo algebraico. Polinomios. Operaciones.",
+        "align": "Semana 3 · M",
+        "lab": "",
+        "eval": "ACS 3"
+      },
+      {
+        "n": 4,
+        "title": "Física: Movimiento Mecánico. MRU. Ecuaciones y gráficas.",
+        "align": "Semana 4 · F",
+        "lab": "",
+        "eval": "ACS 4"
+      },
+      {
+        "n": 5,
+        "title": "Matemática: Factorización. Casos fundamentales.",
+        "align": "Semana 5 · M",
+        "lab": "",
+        "eval": "ACS 5"
+      },
+      {
+        "n": 6,
+        "title": "Física: MRUV. Ecuaciones y gráficas.",
+        "align": "Semana 6 · F",
+        "lab": "",
+        "eval": "ACS 6"
+      },
+      {
+        "n": 7,
+        "title": "Matemática: Ecuaciones lineales y cuadráticas.",
+        "align": "Semana 7 · M",
+        "lab": "",
+        "eval": "ACS 7"
+      },
+      {
+        "n": 8,
+        "title": "Física: Ejercitación MRU y MRUV. Caída libre.",
+        "align": "Semana 8 · F",
+        "lab": "Lab 1",
+        "eval": "ACS 8"
+      },
+      {
+        "n": 9,
+        "title": "Matemática: Sistemas de ecuaciones lineales.",
+        "align": "Semana 9 · M",
+        "lab": "",
+        "eval": "ACS 9"
+      },
+      {
+        "n": 10,
+        "title": "Física: Movimiento Circular Uniforme (MCU).",
+        "align": "Semana 10 · F",
+        "lab": "",
+        "eval": "ACS 10"
+      },
+      {
+        "n": 11,
+        "title": "Matemática: Funciones. Concepto. Dominio e imagen.",
+        "align": "Semana 11 · M",
+        "lab": "",
+        "eval": "ACS 11"
+      },
+      {
+        "n": 12,
+        "title": "Física: Fuerza. Leyes de Newton.",
+        "align": "Semana 12 · F",
+        "lab": "Lab 2",
+        "eval": "ACS 12"
+      },
+      {
+        "n": 13,
+        "title": "Matemática: Función lineal y afín. Gráficas.",
+        "align": "Semana 13 · M",
+        "lab": "",
+        "eval": "ACS 13"
+      },
+      {
+        "n": 14,
+        "title": "Física: Fuerza de rozamiento. Plano inclinado.",
+        "align": "Semana 14 · F",
+        "lab": "",
+        "eval": "ACS 14"
+      },
+      {
+        "n": 15,
+        "title": "Matemática: Función cuadrática. Gráficas.",
+        "align": "Semana 15 · M",
+        "lab": "",
+        "eval": "ACS 15"
+      },
+      {
+        "n": 16,
+        "title": "Física: Trabajo y Energía. Potencia.",
+        "align": "Semana 16 · F",
+        "lab": "",
+        "eval": "ACS 16"
+      },
+      {
+        "n": 17,
+        "title": "Matemática: Progresiones. Aritméticas y geométricas.",
+        "align": "Semana 17 · M",
+        "lab": "",
+        "eval": "ACS 17"
+      },
+      {
+        "n": 18,
+        "title": "Física: Conservación de la energía.",
+        "align": "Semana 18 · F",
+        "lab": "Lab 3",
+        "eval": "ACS 18"
+      },
+      {
+        "n": 19,
+        "title": "Matemática: Teorema de Pitágoras. Aplicaciones.",
+        "align": "Semana 19 · M",
+        "lab": "",
+        "eval": "ACS 19"
+      },
+      {
+        "n": 20,
+        "title": "Física: Impulso y cantidad de movimiento. Choques.",
+        "align": "Semana 20 · F",
+        "lab": "",
+        "eval": "ACS 20"
+      },
+      {
+        "n": 21,
+        "title": "Matemática: Trigonometría. Razones trigonométricas.",
+        "align": "Semana 21 · M",
+        "lab": "",
+        "eval": "ACS 21"
+      },
+      {
+        "n": 22,
+        "title": "Física: Repaso integrador (Mecánica).",
+        "align": "Semana 22 · F",
+        "lab": "",
+        "eval": "ACS 22"
+      },
+      {
+        "n": 23,
+        "title": "Matemática: Cuerpos geométricos. Áreas y volúmenes.",
+        "align": "Semana 23 · M",
+        "lab": "",
+        "eval": "ACS 23"
+      },
+      {
+        "n": 24,
+        "title": "Física: Hidrostática. Presión. Principio de Pascal.",
+        "align": "Semana 24 · F",
+        "lab": "",
+        "eval": "ACS 24"
+      },
+      {
+        "n": 25,
+        "title": "Matemática: Estadística descriptiva. Gráficos.",
+        "align": "Semana 25 · M",
+        "lab": "",
+        "eval": "ACS 25"
+      },
+      {
+        "n": 26,
+        "title": "Física: Hidrodinámica. Principio de Bernoulli.",
+        "align": "Semana 26 · F",
+        "lab": "",
+        "eval": "ACS 26"
+      },
+      {
+        "n": 27,
+        "title": "Matemática: Probabilidad. Cálculo elemental.",
+        "align": "Semana 27 · M",
+        "lab": "",
+        "eval": "ACS 27"
+      },
+      {
+        "n": 28,
+        "title": "Física: Calor y Temperatura.",
+        "align": "Semana 28 · F",
+        "lab": "",
+        "eval": "ACS 28"
+      },
+      {
+        "n": 29,
+        "title": "Matemática: Repaso integrador (Álgebra y Funciones).",
+        "align": "Semana 29 · M",
+        "lab": "",
+        "eval": "ACS 29"
+      },
+      {
+        "n": 30,
+        "title": "Física: Repaso integrador (Hidráulica y Calor).",
+        "align": "Semana 30 · F",
+        "lab": "",
+        "eval": "ACS 30"
+      },
+      {
+        "n": 31,
+        "title": "Matemática: Ejercicios integradores.",
+        "align": "Semana 31 · M",
+        "lab": "",
+        "eval": "ACS 31"
+      },
+      {
+        "n": 32,
+        "title": "Física: Ejercicios integradores.",
+        "align": "Semana 32 · F",
+        "lab": "",
+        "eval": "ACS 32"
+      }
+    ],
+    "note": "La secuencia es flexible y se ajustará según el progreso del grupo. Cada guía se publica semanalmente en GitHub Pages y se comparte por WhatsApp."
+  }
+]
