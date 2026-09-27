@@ -1,0 +1,2523 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=5">
+<title>Programas Complementarios Virtuales · Matemática y Física</title>
+<meta name="description" content="Programas complementarios virtuales de Física 10mo y Matemática-Física 9no. Guías interactivas, laboratorios virtuales y casas de estudio.">
+<meta name="theme-color" content="#07070f">
+<meta name="color-scheme" content="dark light">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta property="og:title" content="Programas Complementarios Virtuales · Matemática y Física">
+<meta property="og:description" content="Reforzar, profundizar y no dejar a nadie atrás.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://unpkg.com" crossorigin>
+<link rel="dns-prefetch" href="https://unpkg.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+
+<!-- ═══════════ ADMIN GUARD ═══════════ -->
+<script>
+  // Marca la sesión como admin si estamos en local, file:// o con ?admin=1
+  (function(){
+    const isAdmin =
+      location.protocol === 'file:' ||
+      location.hostname === 'localhost' ||
+      location.hostname === '127.0.0.1' ||
+      new URLSearchParams(location.search).get('admin') === '1';
+    if (isAdmin) document.documentElement.classList.add('is-admin');
+  })();
+</script>
+
+<style>
+/* ═══════════════════════════════════════════════════════════
+   1. VARIABLES Y TEMAS
+   ═══════════════════════════════════════════════════════════ */
+:root{
+  --primary:#6d5efc; --primary-soft:#8b7dff; --primary-deep:#4b3fd6;
+  --accent:#22d3ee;  --accent-soft:#67e8f9;
+  --magenta:#f472b6; --violet:#a78bfa;
+  --success:#34d399; --warm:#fbbf24; --danger:#f87171;
+
+  --bg:#07070f; --bg-2:#0c0c1a; --bg-3:#12122a;
+  --surface:rgba(255,255,255,.04);
+  --surface-2:rgba(255,255,255,.06);
+  --surface-3:rgba(255,255,255,.09);
+  --border:rgba(255,255,255,.08);
+  --border-2:rgba(255,255,255,.14);
+
+  --text:#f4f4ff; --text-2:#b8b8d4; --text-3:#7c7c9e;
+
+  --radius:20px; --radius-sm:14px; --radius-lg:28px; --radius-pill:999px;
+  --shadow-sm:0 4px 16px rgba(0,0,0,.35);
+  --shadow:0 12px 40px rgba(0,0,0,.45);
+  --shadow-lg:0 30px 80px rgba(0,0,0,.55);
+
+  --ease:cubic-bezier(.4,0,.2,1);
+  --ease-spring:cubic-bezier(.34,1.56,.64,1);
+  --ease-out:cubic-bezier(.16,1,.3,1);
+
+  --font-display:'Sora',system-ui,sans-serif;
+  --font-body:'Inter',system-ui,sans-serif;
+
+  --blur-sm:6px; --blur-md:10px; --blur-lg:18px;
+
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+}
+[data-theme="light"]{
+  --bg:#f6f5ff; --bg-2:#efedff; --bg-3:#e8e5ff;
+  --surface:rgba(255,255,255,.72); --surface-2:rgba(255,255,255,.85); --surface-3:rgba(255,255,255,.95);
+  --border:rgba(80,60,180,.12); --border-2:rgba(80,60,180,.22);
+  --text:#1a1533; --text-2:#4a4270; --text-3:#7a739c;
+  --shadow-sm:0 4px 16px rgba(80,60,180,.08);
+  --shadow:0 12px 40px rgba(80,60,180,.12);
+  --shadow-lg:0 30px 80px rgba(80,60,180,.18);
+}
+@media (pointer:coarse),(max-width:900px){
+  :root{ --blur-sm:0px; --blur-md:0px; --blur-lg:12px; }
+}
+@media (prefers-reduced-data:reduce){
+  body::before{animation:none!important}
+  .nav__logo::after,.program::before,.line--grad{animation:none!important}
+  :root{ --blur-sm:0px; --blur-md:0px; --blur-lg:0px; }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   2. RESET
+   ═══════════════════════════════════════════════════════════ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:90px;-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--font-body);background:var(--bg);color:var(--text);
+  line-height:1.65;font-size:16px;overflow-x:hidden;min-height:100vh;position:relative;
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+  text-rendering:optimizeSpeed;
+  padding-left:var(--safe-left);padding-right:var(--safe-right);
+}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font:inherit;color:inherit}
+button{background:none;border:0;cursor:pointer;-webkit-tap-highlight-color:transparent}
+::selection{background:var(--primary);color:#fff}
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--primary),var(--accent));border-radius:10px;border:2px solid var(--bg)}
+
+body::before{
+  content:'';position:fixed;inset:-10%;z-index:-3;pointer-events:none;
+  background:
+    radial-gradient(900px 600px at 12% -5%,rgba(109,94,252,.30),transparent 60%),
+    radial-gradient(800px 600px at 88% 8%,rgba(34,211,238,.20),transparent 60%),
+    radial-gradient(900px 700px at 50% 110%,rgba(244,114,182,.16),transparent 60%),
+    radial-gradient(600px 500px at 90% 90%,rgba(167,139,250,.14),transparent 60%);
+  animation:aurora 24s ease-in-out infinite alternate;
+  will-change:transform;
+}
+body::after{
+  content:'';position:fixed;inset:0;z-index:-2;pointer-events:none;opacity:.30;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
+  mix-blend-mode:overlay;
+}
+@keyframes aurora{
+  0%{transform:translate3d(0,0,0) scale(1)}
+  50%{transform:translate3d(-2%,1%,0) scale(1.05)}
+  100%{transform:translate3d(2%,-1%,0) scale(1.02)}
+}
+
+/* ═══════════════════════════════════════════════════════════
+   3. CURSOR
+   ═══════════════════════════════════════════════════════════ */
+.cursor,.cursor-dot{
+  position:fixed;top:0;left:0;pointer-events:none;z-index:9999;
+  border-radius:50%;mix-blend-mode:difference;
+  transition:opacity .3s var(--ease),width .25s,height .25s,background .25s;
+  will-change:transform;transform:translate3d(0,0,0);opacity:0;contain:strict;
+}
+.cursor{width:36px;height:36px;border:1.5px solid #fff}
+.cursor-dot{width:5px;height:5px;background:#fff}
+.cursor.is-hover{width:60px;height:60px;background:rgba(255,255,255,.08);border-color:transparent}
+body.cursor-active .cursor,body.cursor-active .cursor-dot{opacity:1}
+@media (hover:none),(pointer:coarse){.cursor,.cursor-dot{display:none}}
+
+/* ═══════════════════════════════════════════════════════════
+   4. BARRA DE PROGRESO
+   ═══════════════════════════════════════════════════════════ */
+.scroll-progress{position:fixed;top:0;left:0;right:0;height:3px;z-index:1000;pointer-events:none}
+.scroll-progress__bar{
+  height:100%;width:0;
+  background:linear-gradient(90deg,var(--primary),var(--accent),var(--magenta));
+  box-shadow:0 0 12px rgba(109,94,252,.7);
+  will-change:width;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   5. NAVEGACIÓN
+   ═══════════════════════════════════════════════════════════ */
+.nav{
+  position:fixed;top:calc(14px + var(--safe-top));left:50%;transform:translateX(-50%);
+  width:min(1240px,94%);z-index:900;
+  display:flex;align-items:center;justify-content:space-between;gap:24px;
+  padding:12px 22px;border-radius:var(--radius-pill);
+  background:rgba(12,12,26,.68);border:1px solid var(--border);
+  backdrop-filter:blur(var(--blur-lg)) saturate(1.5);
+  -webkit-backdrop-filter:blur(var(--blur-lg)) saturate(1.5);
+  box-shadow:0 8px 32px rgba(0,0,0,.35);
+  transition:top .35s var(--ease),padding .35s var(--ease),background .35s var(--ease);
+}
+[data-theme="light"] .nav{background:rgba(255,255,255,.75)}
+.nav.is-scrolled{
+  top:calc(8px + var(--safe-top));padding:8px 22px;background:rgba(12,12,26,.88);
+  box-shadow:0 12px 44px rgba(0,0,0,.5),0 0 0 1px rgba(109,94,252,.2);
+}
+[data-theme="light"] .nav.is-scrolled{background:rgba(255,255,255,.92)}
+.nav__brand{display:flex;align-items:center;gap:12px;min-width:0}
+.nav__logo{
+  display:grid;place-items:center;width:40px;height:40px;border-radius:12px;
+  font-family:var(--font-display);font-weight:800;font-size:1.2rem;color:#fff;
+  background:linear-gradient(135deg,var(--primary),var(--accent));
+  box-shadow:0 6px 20px rgba(109,94,252,.5),inset 0 1px 0 rgba(255,255,255,.3);
+  position:relative;overflow:hidden;flex-shrink:0;
+}
+.nav__logo::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,.4) 50%,transparent 70%);
+  transform:translateX(-100%);animation:shine 5s ease-in-out infinite;
+}
+@keyframes shine{0%,60%,100%{transform:translateX(-100%)}30%{transform:translateX(100%)}}
+.nav__title{font-family:var(--font-display);font-weight:700;font-size:.95rem;line-height:1.15;white-space:nowrap}
+.nav__title small{display:block;font-family:var(--font-body);font-weight:500;font-size:.72rem;color:var(--text-3);letter-spacing:.02em}
+.nav__links{display:flex;gap:4px;align-items:center}
+.nav__link{
+  position:relative;padding:8px 14px;font-size:.88rem;font-weight:500;
+  color:var(--text-2);border-radius:var(--radius-pill);
+  transition:color .25s var(--ease),background .25s var(--ease);
+}
+.nav__link:hover{color:var(--text);background:var(--surface)}
+.nav__link.is-active{
+  color:var(--text);
+  background:linear-gradient(135deg,rgba(109,94,252,.2),rgba(34,211,238,.14));
+  box-shadow:inset 0 0 0 1px rgba(109,94,252,.3);
+}
+.nav__link.is-active::after{
+  content:'';position:absolute;bottom:-2px;left:50%;transform:translateX(-50%);
+  width:4px;height:4px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent);
+}
+.nav__actions{display:flex;gap:8px}
+.icon-btn{
+  display:grid;place-items:center;width:38px;height:38px;border-radius:12px;
+  color:var(--text-2);background:var(--surface);border:1px solid var(--border);
+  transition:color .25s,background .25s,border-color .25s,transform .25s;
+}
+.icon-btn:hover{color:var(--text);background:var(--surface-2);border-color:var(--border-2);transform:translateY(-2px)}
+.ico-sun{display:none}
+[data-theme="light"] .ico-moon{display:none}
+[data-theme="light"] .ico-sun{display:block}
+.nav__burger{display:none}
+
+/* Admin guard en CSS */
+#configuracion{display:none}
+.is-admin #configuracion{display:block}
+.nav__link[href="#configuracion"]{display:none}
+.is-admin .nav__link[href="#configuracion"]{display:inline-block}
+
+/* ═══════════════════════════════════════════════════════════
+   6. HERO
+   ═══════════════════════════════════════════════════════════ */
+.hero{
+  position:relative;min-height:100vh;min-height:100svh;
+  display:flex;align-items:center;padding:140px 0 100px;
+  overflow:hidden;isolation:isolate;
+}
+#hero-canvas{
+  position:absolute;inset:0;width:100%;height:100%;z-index:-1;display:block;
+  pointer-events:none;contain:strict;
+}
+.hero__grid{
+  position:absolute;inset:0;z-index:-2;
+  background-image:
+    linear-gradient(rgba(109,94,252,.06) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(109,94,252,.06) 1px,transparent 1px);
+  background-size:60px 60px;
+  mask-image:radial-gradient(ellipse 80% 60% at 50% 40%,#000 30%,transparent 75%);
+  -webkit-mask-image:radial-gradient(ellipse 80% 60% at 50% 40%,#000 30%,transparent 75%);
+}
+.hero__inner{position:relative;text-align:center;z-index:2;width:100%}
+.pill{
+  display:inline-flex;align-items:center;gap:10px;padding:8px 18px;
+  border-radius:var(--radius-pill);background:var(--surface);
+  border:1px solid var(--border-2);
+  backdrop-filter:blur(var(--blur-sm));-webkit-backdrop-filter:blur(var(--blur-sm));
+  font-size:.82rem;font-weight:500;color:var(--text-2);margin-bottom:28px;
+  box-shadow:0 6px 24px rgba(0,0,0,.25);
+}
+.pill__dot{
+  width:8px;height:8px;border-radius:50%;background:var(--success);
+  box-shadow:0 0 12px var(--success);animation:pulse 2s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.4)}}
+.hero__title{
+  font-family:var(--font-display);
+  font-size:clamp(2.4rem,7vw,5.6rem);
+  font-weight:800;line-height:1.02;letter-spacing:-.04em;margin-bottom:28px;
+}
+.hero__title .line{display:block}
+.line--grad{
+  background:linear-gradient(120deg,var(--primary-soft) 0%,var(--accent) 45%,var(--magenta) 90%);
+  background-size:200% auto;-webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation:gradSlide 8s ease-in-out infinite alternate;
+  will-change:background-position;
+}
+@keyframes gradSlide{to{background-position:200% center}}
+.hero__lead{
+  font-size:clamp(1rem,1.5vw,1.2rem);color:var(--text-2);
+  max-width:720px;margin:0 auto 40px;line-height:1.7;
+}
+.hero__lead strong{color:var(--text);font-weight:600}
+.hero__cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:72px}
+.hero__stats{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:20px;
+  max-width:780px;margin:0 auto;padding:28px;
+  border-radius:var(--radius-lg);background:var(--surface);
+  border:1px solid var(--border);
+  backdrop-filter:blur(var(--blur-md));-webkit-backdrop-filter:blur(var(--blur-md));
+  box-shadow:var(--shadow);
+}
+.stat{text-align:center}
+.stat b{
+  display:block;font-family:var(--font-display);
+  font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:800;line-height:1;
+  background:linear-gradient(135deg,var(--accent),var(--primary-soft));
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+}
+.stat span{
+  display:block;margin-top:8px;font-size:.78rem;color:var(--text-3);
+  text-transform:uppercase;letter-spacing:.08em;font-weight:500;
+}
+.hero__scroll{
+  position:absolute;bottom:32px;left:50%;transform:translateX(-50%);
+  width:26px;height:42px;border:2px solid var(--border-2);border-radius:var(--radius-pill);
+  display:grid;place-items:start center;padding-top:8px;z-index:2;
+}
+.hero__scroll span{
+  width:4px;height:8px;border-radius:4px;background:var(--accent);
+  box-shadow:0 0 10px var(--accent);animation:scrollDot 1.8s ease-in-out infinite;
+}
+@keyframes scrollDot{0%,100%{transform:translateY(0);opacity:1}50%{transform:translateY(14px);opacity:.3}}
+
+/* ═══════════════════════════════════════════════════════════
+   7. BOTONES
+   ═══════════════════════════════════════════════════════════ */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  padding:14px 26px;min-height:48px;border-radius:var(--radius-pill);
+  font-weight:600;font-size:.92rem;letter-spacing:.01em;
+  transition:transform .3s var(--ease-spring),box-shadow .3s var(--ease),background .3s;
+  position:relative;overflow:hidden;white-space:nowrap;
+  -webkit-tap-highlight-color:transparent;
+}
+.btn:active{transform:scale(.97)}
+.btn:disabled{opacity:.7;cursor:wait;pointer-events:none}
+.btn--primary{
+  color:#fff;
+  background:linear-gradient(135deg,var(--primary) 0%,var(--primary-deep) 60%,var(--accent) 140%);
+  box-shadow:0 12px 32px rgba(109,94,252,.45),inset 0 1px 0 rgba(255,255,255,.25);
+}
+.btn--primary::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,.35) 50%,transparent 70%);
+  transform:translateX(-100%);transition:transform .7s var(--ease);
+}
+.btn--primary:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 20px 44px rgba(109,94,252,.6)}
+.btn--primary:hover::before{transform:translateX(100%)}
+.btn--ghost{
+  color:var(--text);background:var(--surface);border:1px solid var(--border-2);
+  backdrop-filter:blur(var(--blur-sm));-webkit-backdrop-filter:blur(var(--blur-sm));
+}
+.btn--ghost:hover{background:var(--surface-2);border-color:var(--primary-soft);transform:translateY(-3px)}
+.btn--danger{color:var(--danger);background:rgba(248,113,113,.08);border:1px solid rgba(248,113,113,.25)}
+.btn--danger:hover{background:rgba(248,113,113,.16);transform:translateY(-3px)}
+
+/* ═══════════════════════════════════════════════════════════
+   8. LAYOUT
+   ═══════════════════════════════════════════════════════════ */
+.container{width:min(1240px,92%);margin-inline:auto}
+.section{padding:clamp(72px,10vw,130px) 0;position:relative}
+.section--alt::before{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,transparent,rgba(109,94,252,.05) 20%,rgba(34,211,238,.05) 80%,transparent);
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+}
+.section__head{max-width:780px;margin-bottom:clamp(40px,6vw,68px);position:relative}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--font-display);font-size:.78rem;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--accent);
+  padding:6px 14px;border-radius:var(--radius-pill);
+  background:linear-gradient(135deg,rgba(34,211,238,.12),rgba(109,94,252,.12));
+  border:1px solid rgba(34,211,238,.25);margin-bottom:20px;
+}
+.eyebrow::before{
+  content:'';width:6px;height:6px;border-radius:50%;background:var(--accent);
+  box-shadow:0 0 12px var(--accent);animation:pulse 2s ease-in-out infinite;
+}
+.section__title{
+  font-family:var(--font-display);font-size:clamp(2rem,4.5vw,3.4rem);
+  font-weight:800;line-height:1.1;letter-spacing:-.03em;margin-bottom:18px;
+  background:linear-gradient(135deg,var(--text) 0%,var(--text) 40%,var(--primary-soft) 70%,var(--accent) 100%);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+}
+.section__lead{color:var(--text-2);font-size:clamp(1rem,1.4vw,1.14rem);max-width:62ch}
+.section__lead strong{color:var(--text);font-weight:600}
+
+/* ═══════════════════════════════════════════════════════════
+   9. CARDS
+   ═══════════════════════════════════════════════════════════ */
+.grid{display:grid;gap:22px}
+.grid--2{grid-template-columns:repeat(auto-fit,minmax(340px,1fr))}
+.grid--3{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.grid--config{align-items:start}
+.card{
+  position:relative;padding:32px 28px;border-radius:var(--radius);
+  background:var(--surface);border:1px solid var(--border);
+  backdrop-filter:blur(var(--blur-sm));-webkit-backdrop-filter:blur(var(--blur-sm));
+  overflow:hidden;isolation:isolate;
+  transition:transform .4s var(--ease-out),background .4s var(--ease),box-shadow .4s var(--ease);
+  will-change:transform;transform-style:preserve-3d;contain:layout style;
+}
+.card::before{
+  content:'';position:absolute;inset:0;border-radius:inherit;padding:1px;
+  background:linear-gradient(135deg,rgba(109,94,252,.5),transparent 40%,rgba(34,211,238,.4));
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;
+  opacity:0;transition:opacity .4s var(--ease);pointer-events:none;
+}
+.card::after{
+  content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:radial-gradient(600px circle at var(--mx,50%) var(--my,50%),rgba(109,94,252,.12),transparent 40%);
+  opacity:0;transition:opacity .4s var(--ease);
+}
+.card:hover::before,.card:hover::after{opacity:1}
+.card:hover{background:var(--surface-2);box-shadow:0 24px 60px rgba(0,0,0,.45),0 0 0 1px rgba(109,94,252,.15)}
+.card--accent{
+  background:linear-gradient(135deg,rgba(109,94,252,.12),rgba(34,211,238,.08));
+  border-color:rgba(109,94,252,.3);
+}
+.card__icon{
+  display:grid;place-items:center;width:52px;height:52px;border-radius:16px;
+  font-size:1.5rem;margin-bottom:20px;
+  background:linear-gradient(135deg,rgba(109,94,252,.22),rgba(34,211,238,.14));
+  border:1px solid rgba(109,94,252,.35);
+  box-shadow:0 8px 24px rgba(109,94,252,.25),inset 0 1px 0 rgba(255,255,255,.1);
+  color:var(--text);transform:translateZ(20px);transition:transform .4s var(--ease-spring);
+}
+.card:hover .card__icon{transform:translateZ(40px) scale(1.08) rotate(-3deg)}
+.card h3{
+  font-family:var(--font-display);font-size:1.18rem;font-weight:700;
+  margin-bottom:12px;letter-spacing:-.01em;color:var(--text);
+  transform:translateZ(15px);transition:transform .4s var(--ease);
+}
+.card:hover h3{transform:translateZ(25px)}
+.card p{color:var(--text-2);font-size:.94rem;margin-bottom:14px}
+.card p:last-child{margin-bottom:0}
+.badge{
+  display:inline-grid;place-items:center;width:28px;height:28px;border-radius:9px;
+  font-family:var(--font-display);font-weight:800;font-size:.85rem;color:#fff;
+  background:linear-gradient(135deg,var(--primary),var(--accent));
+  box-shadow:0 4px 14px rgba(109,94,252,.4);margin-bottom:14px;text-transform:uppercase;
+}
+.ticks{list-style:none;display:grid;gap:10px}
+.ticks li{position:relative;padding-left:26px;color:var(--text-2);font-size:.92rem;line-height:1.5}
+.ticks li::before{
+  content:'';position:absolute;left:0;top:6px;width:16px;height:16px;border-radius:50%;
+  background:linear-gradient(135deg,rgba(109,94,252,.25),rgba(34,211,238,.2));
+  border:1px solid rgba(109,94,252,.5);
+}
+.ticks li::after{
+  content:'';position:absolute;left:5px;top:10px;width:6px;height:3px;
+  border-left:2px solid var(--accent);border-bottom:2px solid var(--accent);
+  transform:rotate(-45deg);
+}
+.muted{color:var(--text-3)!important;font-size:.85rem!important;margin-top:12px!important}
+
+/* ═══════════════════════════════════════════════════════════
+   10. TABS + PROGRAMA
+   ═══════════════════════════════════════════════════════════ */
+.tabs{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:32px}
+.tab{
+  display:inline-flex;align-items:center;gap:10px;padding:12px 22px;min-height:48px;
+  border-radius:var(--radius-pill);background:var(--surface);
+  border:1px solid var(--border);font-weight:600;font-size:.9rem;
+  color:var(--text-2);transition:transform .3s var(--ease-spring),color .3s,border-color .3s,background .3s;
+  cursor:pointer;-webkit-tap-highlight-color:transparent;
+}
+.tab:active{transform:scale(.97)}
+.tab:hover{transform:translateY(-2px);border-color:var(--border-2);color:var(--text)}
+.tab.is-active{
+  color:#fff;background:linear-gradient(135deg,var(--primary),var(--primary-deep));
+  border-color:transparent;box-shadow:0 12px 30px rgba(109,94,252,.45);
+}
+.tab__emoji{font-size:1.15rem}
+.program{
+  border-radius:var(--radius-lg);background:var(--surface);
+  border:1px solid var(--border);
+  backdrop-filter:blur(var(--blur-sm));-webkit-backdrop-filter:blur(var(--blur-sm));
+  box-shadow:var(--shadow);overflow:hidden;position:relative;
+}
+.program::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--primary),var(--accent),var(--magenta));
+  background-size:200% auto;animation:gradSlide 5s linear infinite;
+}
+.program__head{
+  padding:32px 32px 24px;border-bottom:1px solid var(--border);
+  display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between;
+}
+.program__title{font-family:var(--font-display);font-size:clamp(1.3rem,2.5vw,1.8rem);font-weight:700;margin-bottom:6px}
+.program__meta{color:var(--text-3);font-size:.9rem}
+.program__meta strong{color:var(--text-2);font-weight:600}
+.program__badges{display:flex;gap:8px;flex-wrap:wrap}
+.badge-pill{
+  padding:6px 14px;border-radius:var(--radius-pill);font-size:.76rem;font-weight:600;
+  background:linear-gradient(135deg,rgba(109,94,252,.15),rgba(34,211,238,.1));
+  border:1px solid rgba(109,94,252,.28);color:var(--text);
+}
+.program__table{overflow-x:auto;max-height:640px;overflow-y:auto;position:relative;-webkit-overflow-scrolling:touch}
+.program__table table{width:100%;border-collapse:collapse;font-size:.9rem}
+.program__table thead th{
+  position:sticky;top:0;padding:16px 20px;text-align:left;
+  font-family:var(--font-display);font-weight:700;font-size:.76rem;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--text-3);
+  background:rgba(12,12,26,.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border-2);white-space:nowrap;z-index:2;
+}
+[data-theme="light"] .program__table thead th{background:rgba(255,255,255,.95)}
+.program__table tbody tr{
+  border-bottom:1px solid var(--border);transition:background .25s var(--ease);
+  opacity:0;transform:translateY(20px) rotateX(-10deg);
+  animation:rowIn .7s var(--ease-out) forwards;
+  animation-delay:calc(var(--row-i,0) * 25ms);
+}
+.program__table tbody tr:nth-child(even){background:rgba(255,255,255,.015)}
+.program__table tbody tr:hover{background:rgba(109,94,252,.1)}
+.program__table tbody tr:last-child{border-bottom:0}
+@keyframes rowIn{to{opacity:1;transform:translateY(0) rotateX(0)}}
+.program__table td{padding:16px 20px;color:var(--text-2);vertical-align:top}
+.program__table td:first-child{font-family:var(--font-display);font-weight:700;color:var(--text);width:60px;text-align:center}
+.program__table td strong{color:var(--text);font-weight:600}
+.lab-chip,.acs-chip,.oral-chip{
+  display:inline-flex;align-items:center;gap:5px;padding:4px 10px;
+  border-radius:var(--radius-pill);font-size:.72rem;font-weight:700;white-space:nowrap;
+}
+.lab-chip{background:linear-gradient(135deg,rgba(34,211,238,.18),rgba(34,211,238,.06));border:1px solid rgba(34,211,238,.4);color:var(--accent-soft)}
+.acs-chip{background:linear-gradient(135deg,rgba(109,94,252,.18),rgba(109,94,252,.06));border:1px solid rgba(109,94,252,.4);color:var(--primary-soft)}
+.oral-chip{background:linear-gradient(135deg,rgba(251,191,36,.15),rgba(251,191,36,.05));border:1px solid rgba(251,191,36,.35);color:var(--warm)}
+.program__note{
+  padding:20px 32px;
+  background:linear-gradient(135deg,rgba(109,94,252,.08),rgba(34,211,238,.05));
+  border-top:1px solid var(--border);font-size:.88rem;color:var(--text-2);
+}
+.program__note strong{color:var(--accent)}
+
+/* ═══════════════════════════════════════════════════════════
+   11. TIMELINE / PANELES / RÚBRICA
+   ═══════════════════════════════════════════════════════════ */
+.timeline{
+  margin-top:48px;padding:36px;border-radius:var(--radius-lg);
+  background:var(--surface);border:1px solid var(--border);
+  backdrop-filter:blur(var(--blur-sm));-webkit-backdrop-filter:blur(var(--blur-sm));
+  position:relative;overflow:hidden;
+}
+.timeline::before{
+  content:'';position:absolute;top:0;left:0;width:100%;height:3px;
+  background:linear-gradient(90deg,var(--primary),var(--accent),var(--magenta));
+}
+.timeline__title{
+  font-family:var(--font-display);font-size:1.15rem;font-weight:700;
+  margin-bottom:28px;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;
+}
+.timeline__title span{
+  font-size:.8rem;color:var(--text-3);font-weight:500;padding:3px 10px;
+  border-radius:var(--radius-pill);background:var(--surface-2);border:1px solid var(--border);
+}
+.timeline__track{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+.tl-step{
+  padding:24px;border-radius:var(--radius-sm);
+  background:linear-gradient(135deg,rgba(109,94,252,.08),rgba(34,211,238,.04));
+  border:1px solid var(--border);
+  transition:transform .35s var(--ease-out),border-color .35s,box-shadow .35s;
+  will-change:transform;
+}
+.tl-step:hover{transform:translateY(-6px) scale(1.02);border-color:rgba(109,94,252,.4);box-shadow:0 20px 44px rgba(109,94,252,.25)}
+.tl-step b{
+  display:inline-block;font-family:var(--font-display);font-size:1.5rem;font-weight:800;
+  background:linear-gradient(135deg,var(--accent),var(--primary-soft));
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  margin-bottom:8px;
+}
+.tl-step h4{font-family:var(--font-display);font-size:1rem;font-weight:700;margin-bottom:6px}
+.tl-step p{font-size:.86rem;color:var(--text-2)}
+.panel{
+  padding:32px;border-radius:var(--radius);background:var(--surface);
+  border:1px solid var(--border);
+  backdrop-filter:blur(var(--blur-sm));-webkit-backdrop-filter:blur(var(--blur-sm));
+  transition:border-color .35s,box-shadow .35s;
+  contain:layout style;
+}
+.panel:hover{border-color:var(--border-2);box-shadow:0 20px 50px rgba(0,0,0,.35)}
+.panel__title{
+  font-family:var(--font-display);font-size:1.15rem;font-weight:700;
+  margin-bottom:20px;display:flex;align-items:center;gap:10px;
+}
+.list{list-style:none;display:grid;gap:4px}
+.list li{padding:14px 4px;border-bottom:1px solid var(--border);display:grid;gap:3px}
+.list li:last-child{border-bottom:0}
+.list b{font-family:var(--font-display);font-weight:600;font-size:.95rem;color:var(--text)}
+.list span{font-size:.85rem;color:var(--text-3);line-height:1.5}
+.rubric{
+  margin-top:32px;padding:36px;border-radius:var(--radius-lg);
+  background:linear-gradient(135deg,rgba(109,94,252,.08),rgba(34,211,238,.04));
+  border:1px solid var(--border);position:relative;overflow:hidden;
+}
+.rubric__title{font-family:var(--font-display);font-size:1.15rem;font-weight:700;margin-bottom:24px}
+.rubric__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.rubric__item{
+  padding:24px;border-radius:var(--radius-sm);background:var(--surface-2);
+  border:1px solid var(--border);border-left:4px solid var(--c,var(--primary));
+  transition:transform .4s var(--ease-spring),box-shadow .4s;
+  position:relative;overflow:hidden;will-change:transform;
+}
+.rubric__item::before{
+  content:'';position:absolute;top:0;left:0;width:100%;height:100%;
+  background:radial-gradient(circle at 0% 0%,color-mix(in srgb,var(--c) 20%,transparent),transparent 60%);
+  opacity:0;transition:opacity .4s;pointer-events:none;
+}
+.rubric__item:hover{transform:translateY(-8px) rotateX(5deg) rotateY(-5deg) scale(1.02);box-shadow:0 24px 50px rgba(0,0,0,.4)}
+.rubric__item:hover::before{opacity:1}
+.rubric__item b{display:block;font-family:var(--font-display);font-size:1.4rem;font-weight:800;color:var(--c);margin-bottom:4px}
+.rubric__item h4{font-size:.9rem;font-weight:700;margin-bottom:8px;color:var(--text)}
+.rubric__item p{font-size:.82rem;color:var(--text-2);line-height:1.5}
+
+/* ═══════════════════════════════════════════════════════════
+   12. CHIPS / TABLA / ROLES / SEMANA
+   ═══════════════════════════════════════════════════════════ */
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:32px}
+.chip{
+  display:inline-flex;align-items:center;gap:8px;padding:10px 18px;
+  border-radius:var(--radius-pill);background:var(--surface);
+  border:1px solid var(--border);font-size:.86rem;font-weight:500;
+  color:var(--text-2);transition:transform .3s var(--ease-spring),color .3s,border-color .3s;
+}
+.chip:hover{transform:translateY(-3px) scale(1.03);border-color:var(--primary-soft);color:var(--text)}
+.table-wrap{overflow-x:auto;border-radius:var(--radius-sm);border:1px solid var(--border);-webkit-overflow-scrolling:touch}
+.table{width:100%;border-collapse:collapse;font-size:.88rem;min-width:680px}
+.table thead th{
+  padding:14px 18px;text-align:left;font-family:var(--font-display);
+  font-weight:700;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--text-3);background:rgba(109,94,252,.08);
+  border-bottom:1px solid var(--border-2);white-space:nowrap;
+}
+.table tbody td{padding:14px 18px;border-bottom:1px solid var(--border);color:var(--text-2);vertical-align:middle}
+.table tbody tr:last-child td{border-bottom:0}
+.table tbody tr{transition:background .25s}
+.table tbody tr:hover{background:rgba(109,94,252,.06)}
+.tag{
+  display:inline-grid;place-items:center;width:28px;height:28px;border-radius:8px;
+  font-family:var(--font-display);font-weight:800;font-size:.82rem;color:#fff;
+  transition:transform .3s var(--ease-spring);
+}
+.tag:hover{transform:scale(1.15) rotate(-8deg)}
+.tag--a{background:linear-gradient(135deg,var(--success),#10b981)}
+.tag--b{background:linear-gradient(135deg,var(--accent),#0891b2)}
+.tag--c{background:linear-gradient(135deg,var(--warm),#d97706)}
+.tag--d{background:linear-gradient(135deg,var(--danger),#dc2626)}
+.roles{display:grid;gap:10px;margin:18px 0}
+.role{
+  padding:12px 16px;border-radius:var(--radius-sm);background:var(--surface-2);
+  border:1px solid var(--border);border-left:3px solid var(--primary);
+  transition:transform .3s,border-left-color .3s;
+}
+.role:hover{transform:translateX(4px);border-left-color:var(--accent)}
+.role b{display:block;font-size:.86rem;font-weight:700;color:var(--text);margin-bottom:2px}
+.role span{font-size:.8rem;color:var(--text-3)}
+.rules{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.rules span{
+  padding:6px 12px;border-radius:var(--radius-pill);font-size:.76rem;
+  background:var(--surface-2);border:1px solid var(--border);color:var(--text-2);
+  transition:transform .25s,background .25s;
+}
+.week{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+.week__day{
+  padding:20px;border-radius:var(--radius-sm);background:var(--surface-2);
+  border:1px solid var(--border);
+  transition:transform .35s var(--ease-out),border-color .35s,box-shadow .35s;
+  will-change:transform;
+}
+.week__day:hover{transform:translateY(-6px) rotateX(4deg);border-color:rgba(109,94,252,.4);box-shadow:0 20px 40px rgba(0,0,0,.3)}
+.week__day b{
+  display:block;font-family:var(--font-display);font-size:.82rem;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;
+}
+.week__day p{font-size:.84rem;color:var(--text-2);line-height:1.55;margin-bottom:10px}
+.week__day span{
+  display:inline-block;font-size:.72rem;font-weight:600;padding:3px 10px;
+  border-radius:var(--radius-pill);background:rgba(109,94,252,.15);
+  border:1px solid rgba(109,94,252,.3);color:var(--primary-soft);
+}
+.week__day--key{
+  background:linear-gradient(135deg,rgba(109,94,252,.2),rgba(34,211,238,.1));
+  border-color:rgba(109,94,252,.5);box-shadow:0 8px 28px rgba(109,94,252,.25);
+}
+.week__day--key b{color:var(--magenta)}
+
+/* ═══════════════════════════════════════════════════════════
+   13. FORMULARIO
+   ═══════════════════════════════════════════════════════════ */
+.config-form{display:grid;gap:18px}
+.field{display:grid;gap:8px}
+.field label{font-family:var(--font-display);font-size:.82rem;font-weight:600;color:var(--text-2);letter-spacing:.02em}
+.field input[type="text"],.field input[type="password"],.field input[type="email"],.field input[type="file"]{
+  width:100%;padding:14px 16px;min-height:48px;border-radius:var(--radius-sm);
+  background:var(--bg-2);border:1px solid var(--border);color:var(--text);
+  font-size:16px;transition:border-color .25s,box-shadow .25s,background .25s;
+}
+.field input[type="file"]{padding:10px 12px;cursor:pointer}
+.field input[type="file"]::file-selector-button{
+  padding:8px 14px;margin-right:12px;border-radius:10px;border:0;
+  background:linear-gradient(135deg,var(--primary),var(--primary-deep));
+  color:#fff;font-weight:600;cursor:pointer;
+}
+[data-theme="light"] .field input{background:#fff}
+.field input:focus{outline:none;border-color:var(--primary);background:var(--bg-3);box-shadow:0 0 0 4px rgba(109,94,252,.18)}
+[data-theme="light"] .field input:focus{background:#fff}
+.field small{font-size:.76rem;color:var(--text-3);line-height:1.5}
+.field small code{
+  padding:2px 6px;border-radius:6px;background:rgba(109,94,252,.15);
+  color:var(--primary-soft);font-size:.72rem;font-family:ui-monospace,monospace;
+}
+.field__input{position:relative}
+.field__btn{
+  position:absolute;right:6px;top:50%;transform:translateY(-50%);
+  padding:10px 12px;border-radius:10px;color:var(--text-3);
+  transition:color .25s,background .25s;
+  display:grid;place-items:center;min-width:44px;min-height:44px;
+}
+.field__btn:hover{color:var(--text);background:var(--surface-2)}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.check{
+  display:flex;align-items:center;gap:12px;
+  font-size:.9rem;color:var(--text-2);cursor:pointer;
+  padding:10px 4px;min-height:44px;
+}
+.check input{width:22px;height:22px;accent-color:var(--primary);cursor:pointer;flex-shrink:0}
+.config-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
+.warning{
+  padding:14px 16px;border-radius:var(--radius-sm);background:rgba(251,191,36,.08);
+  border:1px solid rgba(251,191,36,.3);color:var(--text-2);font-size:.82rem;line-height:1.6;
+}
+.warning strong{color:var(--warm)}
+.warning code{padding:1px 6px;border-radius:5px;background:rgba(0,0,0,.3);font-family:ui-monospace,monospace;font-size:.78rem}
+
+/* Publish modes */
+.publish-modes{display:grid;gap:8px}
+.publish-mode{
+  display:flex;align-items:center;gap:10px;
+  padding:12px 14px;border-radius:var(--radius-sm);
+  background:var(--bg-2);border:1px solid var(--border);
+  cursor:pointer;font-size:.85rem;color:var(--text-2);
+  transition:border-color .25s,background .25s,color .25s;
+  min-height:44px;
+}
+[data-theme="light"] .publish-mode{background:#fff}
+.publish-mode:hover{border-color:var(--border-2);color:var(--text)}
+.publish-mode input{accent-color:var(--primary);width:18px;height:18px;flex-shrink:0}
+.publish-mode:has(input:checked){
+  border-color:var(--primary);
+  background:linear-gradient(135deg,rgba(109,94,252,.12),rgba(34,211,238,.08));
+  color:var(--text);
+  box-shadow:0 0 0 2px rgba(109,94,252,.15);
+}
+.publish-mode b{color:var(--text);font-weight:600}
+.publish-mode span{display:inline-flex;align-items:center;gap:8px;flex-wrap:wrap}
+
+/* ═══════════════════════════════════════════════════════════
+   14. CONSOLA
+   ═══════════════════════════════════════════════════════════ */
+.console{
+  padding:18px;border-radius:var(--radius-sm);background:#05050c;
+  border:1px solid var(--border);font-family:ui-monospace,'SF Mono',Menlo,monospace;
+  font-size:.82rem;line-height:1.65;max-height:340px;min-height:240px;
+  overflow-y:auto;position:relative;-webkit-overflow-scrolling:touch;
+}
+.console::before{
+  content:'';position:sticky;top:0;display:block;width:100%;height:2px;
+  background:linear-gradient(90deg,var(--primary),var(--accent));
+  margin:-18px -18px 14px;
+}
+[data-theme="light"] .console{background:#0a0a18}
+.console__line{padding:4px 0;word-break:break-word;color:#a0a0c0;animation:consoleIn .3s var(--ease-out) both}
+@keyframes consoleIn{from{opacity:0;transform:translateX(-6px)}to{opacity:1;transform:translateX(0)}}
+.console__line--info{color:#a0a0c0}
+.console__line--ok{color:#4ade80}
+.console__line--error{color:#f87171}
+.console__line--pending{color:#fbbf24}
+.status{
+  display:inline-flex;align-items:center;gap:10px;margin-top:16px;
+  padding:10px 16px;border-radius:var(--radius-pill);background:var(--surface);
+  border:1px solid var(--border);font-size:.85rem;color:var(--text-2);
+  max-width:100%;overflow:hidden;
+}
+.status__text{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.status__dot{width:8px;height:8px;border-radius:50%;background:var(--text-3);flex-shrink:0;transition:background .3s,box-shadow .3s}
+.status.is-ok .status__dot{background:var(--success);box-shadow:0 0 12px var(--success)}
+.status.is-error .status__dot{background:var(--danger);box-shadow:0 0 12px var(--danger)}
+.status.is-pending .status__dot{background:var(--warm);box-shadow:0 0 12px var(--warm);animation:pulse 1.2s infinite}
+
+/* ═══════════════════════════════════════════════════════════
+   15. FOOTER + REVEAL
+   ═══════════════════════════════════════════════════════════ */
+.footer{
+  position:relative;padding:56px 0 40px;border-top:1px solid var(--border);
+  background:linear-gradient(180deg,transparent,rgba(109,94,252,.06));margin-top:40px;
+}
+.footer__inner{display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between}
+.footer b{font-family:var(--font-display);font-size:.95rem;font-weight:700;display:block;margin-bottom:4px}
+.footer p{font-size:.85rem;color:var(--text-3)}
+.footer__quote{font-style:italic;color:var(--text-2)!important;max-width:420px;text-align:right;font-size:.88rem!important}
+.reveal{
+  opacity:0;transform:translateY(40px) rotateX(-8deg);
+  transition:opacity .9s var(--ease-out),transform .9s var(--ease-out);
+  transition-delay:calc(var(--i,0) * 70ms);will-change:opacity,transform;
+}
+.reveal.is-visible{opacity:1;transform:translateY(0) rotateX(0)}
+
+/* ═══════════════════════════════════════════════════════════
+   16. CONTADOR DE VISITAS
+   ═══════════════════════════════════════════════════════════ */
+.visit-badge{
+  position:fixed;bottom:calc(18px + var(--safe-bottom));right:calc(18px + var(--safe-right));
+  z-index:850;display:inline-flex;align-items:center;gap:8px;
+  padding:9px 15px;border-radius:var(--radius-pill);
+  background:rgba(12,12,26,.72);border:1px solid var(--border);
+  backdrop-filter:blur(var(--blur-lg)) saturate(1.6);
+  -webkit-backdrop-filter:blur(var(--blur-lg)) saturate(1.6);
+  color:var(--text-2);font-size:.78rem;font-weight:600;
+  box-shadow:0 8px 24px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.06);
+  transition:transform .35s var(--ease-spring),background .3s,border-color .3s;
+  opacity:0;transform:translateY(20px);
+  animation:badgeIn .8s var(--ease-out) 1.2s forwards;
+}
+@keyframes badgeIn{to{opacity:1;transform:translateY(0)}}
+[data-theme="light"] .visit-badge{background:rgba(255,255,255,.85)}
+.visit-badge:hover{transform:translateY(-3px);border-color:var(--border-2)}
+.visit-badge svg{color:var(--accent);flex-shrink:0}
+.visit-badge__num{
+  font-family:var(--font-display);font-weight:700;color:var(--text);
+  font-variant-numeric:tabular-nums;letter-spacing:-.01em;min-width:1ch;
+  transition:color .3s;
+}
+.visit-badge__dot{width:6px;height:6px;border-radius:50%;background:var(--text-3);flex-shrink:0;transition:background .3s,box-shadow .3s}
+.visit-badge.is-live .visit-badge__dot{background:var(--success);box-shadow:0 0 8px var(--success);animation:pulse 2s ease-in-out infinite}
+.visit-badge.is-local .visit-badge__dot{background:var(--warm);box-shadow:0 0 8px var(--warm)}
+.visit-badge.is-loading .visit-badge__num{color:var(--text-3)}
+
+/* ═══════════════════════════════════════════════════════════
+   17. MÓVIL
+   ═══════════════════════════════════════════════════════════ */
+@media (max-width:1024px){
+  .container{width:min(100%,94%)}
+  .grid--2,.grid--3{grid-template-columns:1fr;gap:18px}
+  .rubric__grid{grid-template-columns:repeat(2,1fr)}
+  .timeline__track{grid-template-columns:repeat(2,1fr)}
+  .week{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:768px){
+  :root{
+    --radius:16px; --radius-sm:12px; --radius-lg:20px;
+    --shadow:0 8px 28px rgba(0,0,0,.4);
+    --shadow-lg:0 20px 50px rgba(0,0,0,.5);
+  }
+  html{scroll-padding-top:80px}
+  body{font-size:15.5px;line-height:1.6}
+  .container{width:100%;padding-left:max(18px,var(--safe-left));padding-right:max(18px,var(--safe-right))}
+  .section{padding:clamp(56px,12vw,80px) 0}
+  .section__head{margin-bottom:32px}
+  .section__title{margin-bottom:14px;line-height:1.15}
+  .section__lead{font-size:1rem}
+  .nav{top:calc(8px + var(--safe-top));width:calc(100% - 16px);padding:10px 14px;gap:12px}
+  .nav.is-scrolled{top:calc(6px + var(--safe-top));padding:8px 14px}
+  .nav__logo{width:36px;height:36px;border-radius:10px;font-size:1.1rem}
+  .nav__title{font-size:.85rem}
+  .nav__title small{font-size:.68rem}
+  .nav__links{
+    position:absolute;top:calc(100% + 8px);left:0;right:0;
+    flex-direction:column;align-items:stretch;padding:12px;
+    background:rgba(12,12,26,.98);border:1px solid var(--border);
+    border-radius:var(--radius);backdrop-filter:blur(24px);
+    box-shadow:var(--shadow-lg);
+    opacity:0;visibility:hidden;transform:translateY(-10px);
+    transition:opacity .3s,visibility .3s,transform .3s;
+    max-height:calc(100svh - 100px);overflow-y:auto;
+    -webkit-overflow-scrolling:touch;
+  }
+  [data-theme="light"] .nav__links{background:rgba(255,255,255,.98)}
+  .nav__links.is-open{opacity:1;visibility:visible;transform:translateY(0)}
+  .nav__link{padding:14px 18px;font-size:.95rem;min-height:48px;display:flex;align-items:center;border-radius:12px}
+  .nav__link.is-active::after{display:none}
+  .nav__link.is-active{background:linear-gradient(135deg,rgba(109,94,252,.25),rgba(34,211,238,.18));box-shadow:inset 0 0 0 1px rgba(109,94,252,.4)}
+  .nav__burger{display:grid}
+  .icon-btn{width:42px;height:42px}
+  .hero{min-height:auto;padding:calc(110px + var(--safe-top)) 0 70px}
+  .pill{padding:6px 14px;font-size:.76rem;margin-bottom:20px;gap:8px}
+  .pill__dot{width:7px;height:7px}
+  .hero__title{font-size:clamp(1.9rem,8.5vw,2.8rem);line-height:1.1;margin-bottom:18px;letter-spacing:-.03em}
+  .hero__title .line + .line{margin-top:2px}
+  .hero__lead{font-size:1rem;line-height:1.65;margin-bottom:32px;padding:0 4px}
+  .hero__cta{flex-direction:column;gap:12px;margin-bottom:48px;padding:0 4px}
+  .hero__cta .btn{width:100%;justify-content:center}
+  .hero__stats{grid-template-columns:repeat(2,1fr);gap:8px;padding:20px 16px;border-radius:var(--radius)}
+  .stat{padding:10px 4px}
+  .stat b{font-size:1.75rem}
+  .stat span{font-size:.68rem;letter-spacing:.05em;margin-top:6px}
+  .hero__scroll{display:none}
+  .btn{padding:14px 22px;font-size:.9rem;min-height:50px}
+  .card{padding:24px 20px;border-radius:var(--radius)}
+  .card__icon{width:46px;height:46px;border-radius:14px;font-size:1.3rem;margin-bottom:16px}
+  .card h3{font-size:1.05rem;margin-bottom:10px}
+  .card p{font-size:.9rem}
+  .ticks li{font-size:.88rem;padding-left:24px}
+  .ticks li::before{width:15px;height:15px;top:5px}
+  .ticks li::after{left:4.5px;top:9px}
+  .tabs{gap:8px;margin-bottom:20px}
+  .tab{padding:10px 16px;font-size:.85rem;flex:1 1 calc(50% - 4px);justify-content:center;min-height:46px}
+  .tab__emoji{font-size:1rem}
+  .program{border-radius:var(--radius)}
+  .program__head{padding:20px 18px 16px;gap:14px;flex-direction:column;align-items:flex-start}
+  .program__title{font-size:1.15rem}
+  .program__meta{font-size:.82rem;line-height:1.55}
+  .program__badges{gap:6px}
+  .badge-pill{padding:5px 11px;font-size:.7rem}
+  .program__table{max-height:none;overflow-x:auto;-webkit-overflow-scrolling:touch;position:relative}
+  .program__table::after{
+    content:'← desliza →';position:sticky;left:0;bottom:0;display:block;
+    font-size:.68rem;text-align:center;padding:6px;
+    color:var(--text-3);background:linear-gradient(180deg,transparent,rgba(12,12,26,.9));
+    pointer-events:none;
+  }
+  [data-theme="light"] .program__table::after{background:linear-gradient(180deg,transparent,rgba(255,255,255,.9))}
+  .program__table table{font-size:.82rem;min-width:720px}
+  .program__table thead th{padding:12px 14px;font-size:.68rem}
+  .program__table td{padding:12px 14px}
+  .program__table td:first-child{width:40px}
+  .program__note{padding:16px 18px;font-size:.82rem}
+  .timeline{margin-top:32px;padding:24px 20px;border-radius:var(--radius)}
+  .timeline__title{font-size:1rem;margin-bottom:20px;gap:8px}
+  .timeline__title span{font-size:.72rem;padding:2px 8px}
+  .timeline__track{grid-template-columns:1fr;gap:12px}
+  .tl-step{padding:18px 16px}
+  .tl-step b{font-size:1.25rem;margin-bottom:6px}
+  .tl-step h4{font-size:.95rem}
+  .tl-step p{font-size:.82rem}
+  .panel{padding:22px 18px;border-radius:var(--radius)}
+  .panel__title{font-size:1rem;margin-bottom:16px;gap:8px}
+  .list li{padding:12px 2px}
+  .list b{font-size:.9rem}
+  .list span{font-size:.8rem}
+  .rubric{margin-top:24px;padding:22px 18px;border-radius:var(--radius)}
+  .rubric__title{font-size:1rem;margin-bottom:18px}
+  .rubric__grid{grid-template-columns:1fr;gap:12px}
+  .rubric__item{padding:18px 16px;border-radius:var(--radius-sm)}
+  .rubric__item b{font-size:1.2rem}
+  .rubric__item h4{font-size:.85rem}
+  .rubric__item p{font-size:.78rem}
+  .chips{gap:8px;margin-bottom:24px}
+  .chip{padding:9px 14px;font-size:.82rem}
+  .table-wrap{border-radius:var(--radius-sm)}
+  .table{font-size:.8rem;min-width:600px}
+  .table thead th{padding:12px 14px;font-size:.66rem}
+  .table tbody td{padding:12px 14px}
+  .roles{gap:8px;margin:14px 0}
+  .role{padding:10px 14px}
+  .role b{font-size:.82rem}
+  .role span{font-size:.76rem}
+  .rules{gap:6px;margin-top:14px}
+  .rules span{padding:5px 10px;font-size:.72rem}
+  .week{grid-template-columns:1fr;gap:10px}
+  .week__day{padding:16px 14px}
+  .week__day b{font-size:.76rem;margin-bottom:6px}
+  .week__day p{font-size:.82rem;margin-bottom:8px}
+  .week__day span{font-size:.7rem;padding:3px 9px}
+  .config-form{gap:16px}
+  .field-row{grid-template-columns:1fr;gap:14px}
+  .field input{font-size:16px;padding:14px 16px}
+  .field label{font-size:.8rem}
+  .config-actions{flex-direction:column;gap:10px}
+  .config-actions .btn{width:100%;justify-content:center}
+  .console{font-size:.76rem;padding:14px;min-height:200px;max-height:300px}
+  .footer{padding:40px 0 32px;margin-top:32px}
+  .footer__inner{flex-direction:column;align-items:flex-start;gap:18px}
+  .footer__quote{text-align:left;max-width:100%;font-size:.85rem!important}
+  .visit-badge{bottom:calc(12px + var(--safe-bottom));right:calc(12px + var(--safe-right));padding:7px 11px;font-size:.72rem;gap:6px}
+  .visit-badge__label{display:none}
+}
+@media (max-width:480px){
+  body{font-size:15px}
+  .container{padding-left:max(14px,var(--safe-left));padding-right:max(14px,var(--safe-right))}
+  .nav{width:calc(100% - 12px);padding:8px 12px}
+  .nav__logo{width:34px;height:34px;font-size:1rem}
+  .nav__title{font-size:.78rem}
+  .nav__title small{font-size:.62rem}
+  .section{padding:52px 0}
+  .section__head{margin-bottom:26px}
+  .hero{padding:calc(96px + var(--safe-top)) 0 60px}
+  .hero__title{font-size:clamp(1.65rem,9vw,2.4rem)}
+  .hero__lead{font-size:.94rem}
+  .hero__stats{padding:16px 12px;gap:6px}
+  .stat b{font-size:1.5rem}
+  .stat span{font-size:.62rem}
+  .card{padding:20px 16px}
+  .card__icon{width:42px;height:42px;font-size:1.15rem;margin-bottom:14px}
+  .tab{flex:1 1 100%;padding:10px 14px;font-size:.82rem}
+  .program__head{padding:18px 14px 14px}
+  .program__title{font-size:1.05rem}
+  .program__meta{font-size:.78rem}
+  .badge-pill{padding:4px 10px;font-size:.66rem}
+  .program__table table{font-size:.78rem;min-width:640px}
+  .program__table thead th{padding:10px 12px;font-size:.64rem}
+  .program__table td{padding:10px 12px}
+  .program__note{padding:14px 14px;font-size:.78rem}
+  .timeline{padding:20px 16px}
+  .tl-step{padding:16px 14px}
+  .panel{padding:18px 14px}
+  .rubric{padding:18px 14px}
+  .rubric__item{padding:16px 14px}
+  .btn{padding:13px 20px;font-size:.86rem}
+  .chip{padding:8px 12px;font-size:.78rem}
+}
+@media (max-height:500px) and (orientation:landscape){
+  .hero{min-height:auto;padding:calc(90px + var(--safe-top)) 0 40px}
+  .hero__title{font-size:clamp(1.6rem,5vw,2.2rem)}
+  .hero__lead{margin-bottom:24px}
+  .hero__cta{margin-bottom:32px;flex-direction:row}
+  .hero__cta .btn{width:auto;flex:1}
+  .hero__stats{grid-template-columns:repeat(4,1fr);padding:14px 12px}
+  .stat b{font-size:1.4rem}
+  .stat span{font-size:.62rem}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms!important;animation-iteration-count:1!important;
+    transition-duration:.01ms!important;scroll-behavior:auto!important;
+  }
+  .reveal{opacity:1;transform:none}
+  body::before{animation:none}
+  .line--grad{animation:none}
+  .nav__logo::after{animation:none}
+  .program::before{animation:none}
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="scroll-progress"><div class="scroll-progress__bar" id="scrollBar"></div></div>
+
+<header class="nav" id="nav">
+  <a class="nav__brand" href="#inicio">
+    <span class="nav__logo">∑</span>
+    <span class="nav__title">Programas Complementarios<small>Matemática · Física · Virtual</small></span>
+  </a>
+  <nav class="nav__links" id="navLinks">
+    <a href="#inicio"        class="nav__link is-active">Inicio</a>
+    <a href="#programas"     class="nav__link">Programas</a>
+    <a href="#fundamentos"   class="nav__link">Fundamentos</a>
+    <a href="#metodologia"   class="nav__link">Metodología</a>
+    <a href="#evaluacion"    class="nav__link">Evaluación</a>
+    <a href="#inclusion"     class="nav__link">Inclusión</a>
+    <a href="#configuracion" class="nav__link">Configuración</a>
+  </nav>
+  <div class="nav__actions">
+    <button class="icon-btn" id="themeToggle" aria-label="Cambiar tema">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <path class="ico-moon" d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>
+        <g class="ico-sun"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></g>
+      </svg>
+    </button>
+    <button class="icon-btn nav__burger" id="burger" aria-label="Menú">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </div>
+</header>
+
+<main>
+
+<section id="inicio" class="hero">
+  <canvas id="hero-canvas" aria-hidden="true"></canvas>
+  <div class="hero__grid" aria-hidden="true"></div>
+
+  <div class="container hero__inner">
+    <span class="pill reveal" style="--i:0"><span class="pill__dot"></span> Curso 2025–2026 · Modalidad virtual</span>
+    <h1 class="hero__title">
+      <span class="line reveal" style="--i:1">Programas Complementarios</span>
+      <span class="line line--grad reveal" style="--i:2">Virtuales de Matemática y Física</span>
+    </h1>
+    <p class="hero__lead reveal" style="--i:3">
+      Reforzar, profundizar y no dejar a nadie atrás. Guías interactivas semanales, laboratorios
+      virtuales mensuales y <strong>casas de estudio</strong> comunitarias para garantizar el aprendizaje
+      incluso sin tecnología.
+    </p>
+    <div class="hero__cta reveal" style="--i:4">
+      <a href="#programas" class="btn btn--primary">
+        Explorar programas
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a href="#metodologia" class="btn btn--ghost">Cómo funciona</a>
+    </div>
+    <div class="hero__stats reveal" style="--i:5">
+      <div class="stat"><b data-count="2">0</b><span>Programas</span></div>
+      <div class="stat"><b data-count="68">0</b><span>Guías interactivas</span></div>
+      <div class="stat"><b data-count="9">0</b><span>Laboratorios virtuales</span></div>
+      <div class="stat"><b data-count="38">0</b><span>Semanas</span></div>
+    </div>
+  </div>
+  <div class="hero__scroll" aria-hidden="true"><span></span></div>
+</section>
+
+<section id="programas" class="section">
+  <div class="container">
+    <header class="section__head reveal">
+      <span class="eyebrow">02 — Contenidos</span>
+      <h2 class="section__title">Programas y alineación curricular</h2>
+      <p class="section__lead">Cada guía interactiva corresponde a <strong>una frecuencia semanal</strong> de la planificación reducida. Selecciona un programa y reproduce la secuencia animada.</p>
+    </header>
+    <div class="tabs reveal" style="--i:1" id="programTabs"></div>
+    <div class="program reveal" style="--i:2" id="programView"></div>
+  </div>
+</section>
+
+<section id="fundamentos" class="section section--alt">
+  <div class="container">
+    <header class="section__head reveal">
+      <span class="eyebrow">03 — Fundamentos</span>
+      <h2 class="section__title">Fundamentación, diagnóstico y objetivos</h2>
+      <p class="section__lead">El punto de partida no es el contenido, sino el estudiante: qué sabe, qué le falta y con qué recursos cuenta.</p>
+    </header>
+    <div class="grid grid--3">
+      <article class="card card--accent reveal" style="--i:0">
+        <div class="card__icon">◎</div>
+        <h3>Fundamentación</h3>
+        <p>Los programas complementarios responden a las orientaciones del MINED: atender por déficit o por tratamiento específico aquellos contenidos que necesitan refuerzo en grupos reducidos.</p>
+        <ul class="ticks">
+          <li>No es repetición: es ampliación y profundización.</li>
+          <li>Énfasis en trabajo independiente y método experimental.</li>
+          <li>Aprovecha la tecnología disponible en el contexto cubano.</li>
+          <li>Elaboración negociada y aprobada por el Consejo de Dirección.</li>
+        </ul>
+      </article>
+      <article class="card reveal" style="--i:1">
+        <div class="card__icon">◈</div>
+        <h3>Diagnóstico integral</h3>
+        <p>Antes de implementar, se aplica un cuestionario digital o sesión inicial para identificar:</p>
+        <ul class="ticks">
+          <li>Contenidos con mayores dificultades.</li>
+          <li>Habilidades que requieren ejercitación.</li>
+          <li>Estudiantes con talento a ampliar.</li>
+          <li>Intereses vocacionales afines.</li>
+          <li>Condiciones tecnológicas del grupo.</li>
+        </ul>
+      </article>
+      <article class="card reveal" style="--i:2">
+        <div class="card__icon">★</div>
+        <h3>Objetivos</h3>
+        <p><strong>General:</strong> reforzar y profundizar los contenidos fundamentales mediante la modalidad virtual, desarrollando trabajo independiente, interpretación de fenómenos y método experimental.</p>
+        <ul class="ticks">
+          <li>Reforzar contenidos con mayores dificultades.</li>
+          <li>Desarrollar resolución de problemas.</li>
+          <li>Familiarizar con laboratorios virtuales.</li>
+          <li>Fomentar autoevaluación y motivación.</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="metodologia" class="section">
+  <div class="container">
+    <header class="section__head reveal">
+      <span class="eyebrow">04 — Metodología</span>
+      <h2 class="section__title">Cómo funciona el curso virtual</h2>
+      <p class="section__lead">Refuerzo del contenido impartido en la escuela mediante el <strong>autoestudio dirigido en casa</strong>, con el profesor como orientador del proceso.</p>
+    </header>
+    <div class="grid grid--2">
+      <article class="card reveal" style="--i:0">
+        <span class="badge">a</span>
+        <h3>Estudio independiente en casa</h3>
+        <p>El profesor imparte la teoría en la escuela. El estudiante, en casa, consolida y profundiza esos contenidos con las guías interactivas mientras se dedica a resolver dudas, ejercicios y discutir resultados.</p>
+      </article>
+      <article class="card reveal" style="--i:1">
+        <span class="badge">b</span>
+        <h3>Guías interactivas semanales</h3>
+        <ul class="ticks">
+          <li>Resumen teórico esencial</li>
+          <li>Tres ejercicios dosificados (conceptual, directo, complejo)</li>
+          <li>Ticket de salida</li>
+          <li>Calificación automática sobre 20 puntos</li>
+          <li>Envío del resultado por WhatsApp</li>
+          <li>Ayuda flotante paso a paso</li>
+        </ul>
+        <p class="muted">Publicadas en GitHub Pages y compartidas por WhatsApp.</p>
+      </article>
+      <article class="card reveal" style="--i:2">
+        <span class="badge">c</span>
+        <h3>Laboratorios virtuales · mensual</h3>
+        <ul class="ticks">
+          <li>Pre-informe de preparación previa</li>
+          <li>Guía de laboratorio con pasos</li>
+          <li>Simulación (PhET, GeoGebra, software cubano)</li>
+          <li>Tabla de registro de datos</li>
+          <li>Análisis de resultados y conclusiones</li>
+        </ul>
+      </article>
+      <article class="card reveal" style="--i:3">
+        <span class="badge">d</span>
+        <h3>Comunicación y tutoría</h3>
+        <p>Grupo de Telegram o WhatsApp para orientaciones, dudas y retroalimentación. Sesiones sincrónicas por videollamada o chat programado, según disponibilidad tecnológica.</p>
+      </article>
+    </div>
+    <div class="timeline reveal" style="--i:4">
+      <h3 class="timeline__title">Momentos de la sesión virtual <span>60 min</span></h3>
+      <div class="timeline__track">
+        <div class="tl-step"><b>10'</b><h4>Inicio</h4><p>Recuperación del contenido anterior y pregunta problematizadora.</p></div>
+        <div class="tl-step"><b>35'</b><h4>Desarrollo</h4><p>Ejercicio modelo, práctica guiada o discusión del laboratorio virtual.</p></div>
+        <div class="tl-step"><b>15'</b><h4>Cierre</h4><p>Sistematización, evaluación breve y orientación del trabajo independiente.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="evaluacion" class="section section--alt">
+  <div class="container">
+    <header class="section__head reveal">
+      <span class="eyebrow">05 — Recursos y evaluación</span>
+      <h2 class="section__title">Medios, instrumentos y rúbrica</h2>
+    </header>
+    <div class="grid grid--2">
+      <div class="panel reveal" style="--i:0">
+        <h3 class="panel__title">📚 Recursos y medios</h3>
+        <ul class="list">
+          <li><b>Plataforma GitHub</b><span>Entorno de código abierto para publicar guías y recursos.</span></li>
+          <li><b>GitHub Pages</b><span>Publicación de guías interactivas con enlace propio.</span></li>
+          <li><b>WhatsApp / Telegram</b><span>Canal de comunicación, envío de materiales y retroalimentación.</span></li>
+          <li><b>Libros de texto</b><span>Fuente principal de contenidos (Tercer Perfeccionamiento).</span></li>
+          <li><b>Simulaciones virtuales</b><span>PhET, GeoGebra, software educativo cubano.</span></li>
+          <li><b>Guías HTML</b><span>Elaboradas por el profesor para cada semana.</span></li>
+          <li><b>Formularios digitales</b><span>Autoevaluación y evaluaciones sistemáticas.</span></li>
+        </ul>
+      </div>
+      <div class="panel reveal" style="--i:1">
+        <h3 class="panel__title">📊 Sistema de evaluación</h3>
+        <ul class="list">
+          <li><b>Autoevaluación</b><span>Guía interactiva con calificación automática · Semanal</span></li>
+          <li><b>Evaluación sistemática</b><span>Guía interactiva (ACS semanal) · Semanal</span></li>
+          <li><b>Laboratorio virtual</b><span>Pre-informe + informe · Mensual</span></li>
+          <li><b>Evaluación integradora</b><span>Ejercicio integrador final · Una vez</span></li>
+        </ul>
+        <p class="muted">Los resultados se expresan cualitativamente y se comparan con el diagnóstico inicial para valorar el progreso.</p>
+      </div>
+    </div>
+    <div class="rubric reveal" style="--i:2">
+      <h3 class="rubric__title">🏆 Rúbrica única · sobre 20 puntos</h3>
+      <div class="rubric__grid">
+        <div class="rubric__item" style="--c:var(--success)"><b>18–20</b><h4>Excelente</h4><p>Responde correctamente todos o casi todos los ejercicios, con procedimientos claros y unidades correctas.</p></div>
+        <div class="rubric__item" style="--c:var(--primary)"><b>14–17</b><h4>Muy bien</h4><p>Responde correctamente la mayoría, con errores menores.</p></div>
+        <div class="rubric__item" style="--c:var(--warm)"><b>10–13</b><h4>Aprobado</h4><p>Responde correctamente al menos la mitad, con errores conceptuales o de cálculo.</p></div>
+        <div class="rubric__item" style="--c:var(--danger)"><b>0–9</b><h4>Necesita repasar</h4><p>Errores conceptuales graves o respuestas incompletas.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="inclusion" class="section">
+  <div class="container">
+    <header class="section__head reveal">
+      <span class="eyebrow">06 — Inclusión</span>
+      <h2 class="section__title">Nadie queda fuera del curso</h2>
+      <p class="section__lead">La meta no es que todos usen la misma tecnología, sino que <strong>todos aprendan</strong>. La solidaridad y el colectivismo son nuestras mejores herramientas.</p>
+    </header>
+    <div class="chips reveal" style="--i:0">
+      <span class="chip">⚖️ Equidad</span>
+      <span class="chip">🎯 Atención diferenciada</span>
+      <span class="chip">🔀 Flexibilidad</span>
+      <span class="chip">🤝 Integración escuela-familia-comunidad</span>
+      <span class="chip">👨‍🏫 Protagonismo del profesor</span>
+    </div>
+    <div class="panel reveal" style="--i:1">
+      <h3 class="panel__title">🗺️ Plan de contingencia por categoría</h3>
+      <div class="table-wrap">
+        <table class="table">
+          <thead><tr><th>Cat.</th><th>Características</th><th>Vía principal</th><th>Apoyo familiar</th><th>Casa de estudio</th></tr></thead>
+          <tbody>
+            <tr><td><span class="tag tag--a">A</span></td><td>Dispositivo + internet</td><td>Guía interactiva HTML</td><td>Uso del dispositivo familiar</td><td>No requiere</td></tr>
+            <tr><td><span class="tag tag--b">B</span></td><td>Dispositivo sin internet</td><td>USB / CursAD</td><td>Uso del dispositivo familiar</td><td>Puede participar como anfitrión</td></tr>
+            <tr><td><span class="tag tag--c">C</span></td><td>Sin dispositivo, con impresión</td><td>Guía impresa</td><td>Custodia de materiales</td><td>Participa como visitante</td></tr>
+            <tr><td><span class="tag tag--d">D</span></td><td>Sin dispositivo ni impresión</td><td>Visita domiciliaria</td><td>Recepción de materiales y apoyo</td><td>Participa como visitante</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="grid grid--2">
+      <article class="card reveal" style="--i:2">
+        <div class="card__icon">🏠</div>
+        <h3>El papel de la familia</h3>
+        <p class="muted">La familia no sustituye al profesor: lo apoya creando condiciones para el estudio.</p>
+        <ul class="ticks">
+          <li>Garantizar un espacio de estudio adecuado</li>
+          <li>Administrar el tiempo de estudio semanal</li>
+          <li>Facilitar el acceso al dispositivo familiar</li>
+          <li>Recibir y custodiar los materiales impresos</li>
+          <li>Apoyar la entrega de resultados</li>
+          <li>Mantener comunicación con el profesor</li>
+          <li>Estimular y acompañar al estudiante</li>
+        </ul>
+      </article>
+      <article class="card card--accent reveal" style="--i:3">
+        <div class="card__icon">🏘️</div>
+        <h3>Casas de estudio</h3>
+        <p>Espacios comunitarios de aprendizaje solidario: un estudiante con acceso abre las puertas de su hogar a compañeros sin acceso, con autorización familiar y orientación del profesor.</p>
+        <div class="roles">
+          <div class="role"><b>Estudiante anfitrión</b><span>Facilita dispositivo, conexión y espacio.</span></div>
+          <div class="role"><b>Estudiantes visitantes</b><span>Resuelven en libreta y participan en la discusión.</span></div>
+          <div class="role"><b>Familia anfitriona</b><span>Autoriza, supervisa y garantiza condiciones.</span></div>
+          <div class="role"><b>Profesor</b><span>Orienta, entrega materiales, corrige y califica.</span></div>
+        </div>
+        <div class="rules">
+          <span>🤝 Respeto mutuo</span><span>📱 Cuidado del dispositivo</span><span>⏱️ 45–90 min</span>
+          <span>🔇 Silencio y concentración</span><span>📋 Registro de asistencia</span><span>🔒 Confidencialidad</span>
+        </div>
+      </article>
+    </div>
+    <div class="panel reveal" style="--i:4">
+      <h3 class="panel__title">📅 Funcionamiento semanal tipo</h3>
+      <div class="week">
+        <div class="week__day"><b>Lunes</b><p>El profesor publica la guía en GitHub Pages y la comparte por WhatsApp. Imprime copias para estudiantes sin acceso.</p><span>Profesor</span></div>
+        <div class="week__day"><b>Martes</b><p>El estudiante anfitrión recibe la guía impresa o descarga la digital y coordina la sesión del sábado.</p><span>Profesor / Anfitrión</span></div>
+        <div class="week__day"><b>Miércoles</b><p>Entrega de guías impresas a categorías C y D, o envío por estudiante ayudante.</p><span>Profesor / Ayudante</span></div>
+        <div class="week__day week__day--key"><b>Sábado</b><p>Sesión de casa de estudio: resuelven la guía, discuten dudas y anotan respuestas en su libreta.</p><span>Estudiantes / Familia</span></div>
+        <div class="week__day"><b>Lunes sig.</b><p>El anfitrión entrega las libretas. El profesor corrige y califica sobre 20 puntos.</p><span>Anfitrión / Profesor</span></div>
+        <div class="week__day"><b>Martes sig.</b><p>Devolución con retroalimentación y registro de calificaciones.</p><span>Profesor</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="configuracion" class="section section--alt">
+  <div class="container">
+    <header class="section__head reveal">
+      <span class="eyebrow">07 — Configuración</span>
+      <h2 class="section__title">Publicación en GitHub Pages</h2>
+      <p class="section__lead">Conecta el sitio con tu repositorio mediante un <strong>token clásico</strong>. Si el repositorio, la rama o Pages no existen, se crearán automáticamente.</p>
+    </header>
+    <div class="grid grid--2 grid--config">
+      <form class="panel config-form reveal" style="--i:0" id="configForm" autocomplete="off">
+        <h3 class="panel__title">🔑 Credenciales</h3>
+        <div class="field">
+          <label for="token">Token clásico (PAT)</label>
+          <div class="field__input">
+            <input type="password" id="token" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" spellcheck="false">
+            <button type="button" class="field__btn" id="toggleToken" aria-label="Mostrar u ocultar">👁</button>
+          </div>
+          <small>Requiere scope <code>repo</code> completo para activar Pages automáticamente.</small>
+        </div>
+        <div class="field-row">
+          <div class="field"><label for="owner">Usuario / Organización</label><input type="text" id="owner" placeholder="isniel-portela" spellcheck="false"></div>
+          <div class="field"><label for="repo">Repositorio</label><input type="text" id="repo" placeholder="programas-complementarios" spellcheck="false"></div>
+        </div>
+        <div class="field-row">
+          <div class="field"><label for="branch">Rama</label><input type="text" id="branch" placeholder="(vacío = autodetectar)" spellcheck="false"></div>
+          <div class="field"><label for="path">Ruta del archivo de datos</label><input type="text" id="path" placeholder="data/programas.json" spellcheck="false"></div>
+        </div>
+        <div class="field"><label for="message">Mensaje de commit</label><input type="text" id="message" placeholder="Actualizar programas complementarios"></div>
+
+        <div class="field">
+          <label>Modo de publicación</label>
+          <div class="publish-modes" role="radiogroup" aria-label="Modo de publicación">
+            <label class="publish-mode">
+              <input type="radio" name="pubmode" value="all" checked>
+              <span>🚀 <b>Publicar todo</b> · HTML + datos + Pages</span>
+            </label>
+            <label class="publish-mode">
+              <input type="radio" name="pubmode" value="data">
+              <span>📊 <b>Solo datos</b> · JSON</span>
+            </label>
+            <label class="publish-mode">
+              <input type="radio" name="pubmode" value="html">
+              <span>📄 <b>Solo HTML</b> · index.html</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="field" id="htmlSourceField" hidden>
+          <label for="htmlFile">Archivo index.html a publicar</label>
+          <input type="file" id="htmlFile" accept=".html,text/html">
+          <small>Ejecutas la web desde <code>file://</code>, así que no puedo leer el HTML automáticamente. Selecciona el mismo <code>index.html</code> que estás usando.</small>
+        </div>
+
+        <label class="check"><input type="checkbox" id="remember" checked><span>Guardar configuración en este navegador</span></label>
+
+        <div class="config-actions">
+          <button type="button" class="btn btn--primary" id="btnPublishAll">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+            <span id="btnPublishAllLabel">Publicar todo</span>
+          </button>
+          <button type="button" class="btn btn--ghost" id="btnTest">Probar conexión</button>
+          <button type="button" class="btn btn--ghost" id="btnOpenSite" hidden>🔗 Abrir sitio</button>
+          <button type="button" class="btn btn--ghost" id="btnDownload">Descargar JSON</button>
+          <button type="button" class="btn btn--danger" id="btnClear">Limpiar</button>
+        </div>
+
+        <p class="warning">⚠️ <strong>Aviso de seguridad:</strong> un token guardado en el navegador es accesible desde <code>localStorage</code>. Úsalo solo en equipos de confianza, con el scope mínimo necesario y revócalo desde GitHub cuando ya no lo necesites.</p>
+      </form>
+
+      <div class="panel reveal" style="--i:1">
+        <h3 class="panel__title">📡 Consola de operaciones</h3>
+        <div class="console" id="console" aria-live="polite">
+          <div class="console__line console__line--info">› Listo. Introduce tus credenciales y pulsa «Probar conexión».</div>
+        </div>
+        <div class="status" id="status">
+          <span class="status__dot"></span>
+          <span class="status__text">Sin conexión verificada</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <div>
+      <b>Programas Complementarios Virtuales</b>
+      <p>Ing. Isniel Portela Hernández · Matemática y Física</p>
+    </div>
+    <p class="footer__quote">«La meta no es que todos usen la misma tecnología, sino que todos aprendan.»</p>
+  </div>
+</footer>
+
+<div class="visit-badge is-loading" id="visitBadge" role="status" aria-live="polite" title="Visitas totales a esta página">
+  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+    <circle cx="12" cy="12" r="3"/>
+  </svg>
+  <span class="visit-badge__dot" aria-hidden="true"></span>
+  <span class="visit-badge__num" id="visitNum">—</span>
+  <span class="visit-badge__label">visitas</span>
+</div>
+
+<script type="importmap">
+{ "imports": { "three": "https://unpkg.com/three@0.160.0/build/three.module.js" } }
+</script>
+
+<script type="module">
+import * as THREE from 'three';
+
+/* ═══════════════ 0. UTILIDADES ═══════════════ */
+const $ = id => document.getElementById(id);
+const isTouch = matchMedia('(hover:none),(pointer:coarse)').matches;
+const reduceMotion = matchMedia('(prefers-reduced-motion:reduce)').matches;
+const reduceData = matchMedia('(prefers-reduced-data:reduce)').matches;
+const isMobile = matchMedia('(max-width:900px)').matches;
+
+const rafQueue = new Set();
+let rafPending = false;
+function schedule(fn){
+  rafQueue.add(fn);
+  if (!rafPending) {
+    rafPending = true;
+    requestAnimationFrame(() => {
+      rafPending = false;
+      const fns = [...rafQueue]; rafQueue.clear();
+      for (let i = 0; i < fns.length; i++) fns[i]();
+    });
+  }
+}
+
+/* ═══════════════ 1. DATOS ═══════════════ */
+const PROGRAMS = [
+  {
+    id:'fisica10', emoji:'⚛️', name:'Física 10mo', subject:'Física', grade:'10mo',
+    frequency:'Semanal', center:'IPU Roberto Leonardo Roque Nuñez', teacher:'Ing. Isniel Portela Hernández',
+    guides:[
+      {n:1,title:'Introducción a la Unidad 1: Magnitudes físicas. Magnitudes escalares y vectoriales. Operaciones con vectores.',align:'Semana 1 · U1',lab:'',eval:'Oral'},
+      {n:2,title:'Cinemática. Movimiento mecánico. MRU.',align:'Semana 4 · U2',lab:'',eval:'Oral'},
+      {n:3,title:'MRUV. Ecuaciones y gráficas.',align:'Semana 6 · U2',lab:'',eval:'ACS 3'},
+      {n:4,title:'Ejercitación MRU y MRUV.',align:'Semana 7 · U2',lab:'',eval:'ACS 4'},
+      {n:5,title:'Ejercitación gráficas y ecuaciones cinemáticas.',align:'Semana 6 · U2',lab:'',eval:'ACS 5'},
+      {n:6,title:'Movimiento de proyectiles. MCU. Desplazamiento.',align:'Semana 8 · U2',lab:'',eval:'ACS 6'},
+      {n:7,title:'Velocidad angular y lineal. Aceleración angular y centrípeta.',align:'Semana 9 · U2',lab:'',eval:'ACS 7'},
+      {n:8,title:'Ejercitación MCU.',align:'Semana 10 · U2',lab:'',eval:'ACS 8'},
+      {n:9,title:'Ley de Gravitación Universal. Ley de Inercia. Inercialidad y masa.',align:'Semana 11 · U3',lab:'',eval:'ACS 9'},
+      {n:10,title:'Segunda Ley de Newton. Fuerza resultante.',align:'Semana 11 · U3',lab:'',eval:'ACS 10'},
+      {n:11,title:'Tercera Ley de Newton. Tipos de fuerzas: gravedad, elástica, rozamiento, normal.',align:'Semana 12 · U3',lab:'Lab 1',eval:'ACS 11'},
+      {n:12,title:'Resolución de ejercicios: fuerza paralela al plano sin y con fricción.',align:'Semana 13 · U3',lab:'',eval:'ACS 12'},
+      {n:13,title:'Resolución de ejercicios: fuerza formando ángulo con el plano. Plano inclinado.',align:'Semana 14 · U3',lab:'',eval:'ACS 13'},
+      {n:14,title:'Sistemas de cuerpos unidos por cuerdas.',align:'Semana 16 · U3',lab:'',eval:'ACS 14'},
+      {n:15,title:'Impulso de una fuerza. Cantidad de movimiento lineal.',align:'Semana 20 · U4',lab:'Lab 2',eval:'ACS 15'},
+      {n:16,title:'Relación impulso-cantidad de movimiento. Conservación. Centro de masa.',align:'Semana 21 · U4',lab:'',eval:'ACS 16'},
+      {n:17,title:'Movimiento reactivo. Resolución de ejercicios.',align:'Semana 22 · U4',lab:'',eval:'ACS 17'},
+      {n:18,title:'Resolución de ejercicios integradores.',align:'Semana 23 · U4',lab:'',eval:'ACS 18'},
+      {n:19,title:'Trabajo mecánico. Trabajo de un sistema de fuerzas. Relación trabajo-energía cinética.',align:'Semana 25 · U5',lab:'',eval:'ACS 19'},
+      {n:20,title:'Trabajo de fuerzas conservativas: gravedad y elástica. Energías potenciales.',align:'Semana 26 · U5',lab:'Lab 3',eval:'ACS 20'},
+      {n:21,title:'Fuerzas no conservativas. Trabajo de la fuerza de rozamiento.',align:'Semana 26 · U5',lab:'',eval:'ACS 21'},
+      {n:22,title:'Ley de conservación de la energía mecánica. Choques.',align:'Semana 27 · U5',lab:'',eval:'ACS 22'},
+      {n:23,title:'Sólido rígido. Ángulo de giro. Velocidad y aceleración angular.',align:'Semana 28 · U6',lab:'',eval:'ACS 23'},
+      {n:24,title:'Energía cinética rotacional. Momento de inercia. Teorema de Steiner.',align:'Semana 29 · U6',lab:'Lab 4',eval:'ACS 24'},
+      {n:25,title:'Torque. Brazo de una fuerza. Ecuación fundamental de la dinámica de rotación.',align:'Semana 30 · U6',lab:'',eval:'ACS 25'},
+      {n:26,title:'Cantidad de movimiento angular. Conservación. Resolución de ejercicios.',align:'Semana 31 · U6',lab:'',eval:'ACS 26'},
+      {n:27,title:'Movimiento oscilatorio. MAS. Análisis energético.',align:'Semana 32 · U7',lab:'',eval:'ACS 27'},
+      {n:28,title:'Cinemática del MAS. Gráficas x(t), v(t), a(t).',align:'Semana 33 · U7',lab:'Lab 5',eval:'ACS 28'},
+      {n:29,title:'Dinámica del MAS. Sistema cuerpo-resorte y péndulo simple.',align:'Semana 33 · U7',lab:'',eval:'ACS 29'},
+      {n:30,title:'Energía en el MAS. Oscilaciones amortiguadas, forzadas y resonancia.',align:'Semana 34 · U7',lab:'',eval:'ACS 30'},
+      {n:31,title:'Ondas mecánicas: características, tipos y propagación.',align:'Semana 36 · U8',lab:'',eval:'ACS 31'},
+      {n:32,title:'Ecuación del movimiento ondulatorio. Propiedades de las ondas.',align:'Semana 37 · U8',lab:'',eval:'ACS 32'},
+      {n:33,title:'Ondas estacionarias.',align:'Semana 37 · U8',lab:'Lab 6',eval:'ACS 33'},
+      {n:34,title:'Efecto Doppler. Resolución de ejercicios.',align:'Semana 38 · U8',lab:'',eval:'ACS 34'},
+      {n:35,title:'Repaso integrador Unidades 3–4.',align:'Semana 39 · Consolidación',lab:'',eval:'ACS 35'},
+      {n:36,title:'Repaso integrador Unidades 5–6.',align:'Semana 39 · Consolidación',lab:'',eval:'ACS 36'}
+    ],
+    note:'ACS (Actividad de Control Sistemático): la calificación automática sobre 20 puntos que genera la guía es la nota de la ACS. Se envía al profesor por WhatsApp y se registra como evaluación sistemática.'
+  },
+  {
+    id:'matefis9', emoji:'📐', name:'Matemática y Física 9no', subject:'Matemática y Física', grade:'9no',
+    frequency:'Semanal', center:'ESBU Gil Augusto González', teacher:'Ing. Isniel Portela Hernández',
+    guides:[
+      {n:1,title:'Matemática: Números reales. Operaciones. Propiedades.',align:'Semana 1 · M',lab:'',eval:'Oral'},
+      {n:2,title:'Física: Introducción. Magnitudes. Unidades. Notación científica.',align:'Semana 2 · F',lab:'',eval:'Oral'},
+      {n:3,title:'Matemática: Cálculo algebraico. Polinomios. Operaciones.',align:'Semana 3 · M',lab:'',eval:'ACS 3'},
+      {n:4,title:'Física: Movimiento Mecánico. MRU. Ecuaciones y gráficas.',align:'Semana 4 · F',lab:'',eval:'ACS 4'},
+      {n:5,title:'Matemática: Factorización. Casos fundamentales.',align:'Semana 5 · M',lab:'',eval:'ACS 5'},
+      {n:6,title:'Física: MRUV. Ecuaciones y gráficas.',align:'Semana 6 · F',lab:'',eval:'ACS 6'},
+      {n:7,title:'Matemática: Ecuaciones lineales y cuadráticas.',align:'Semana 7 · M',lab:'',eval:'ACS 7'},
+      {n:8,title:'Física: Ejercitación MRU y MRUV. Caída libre.',align:'Semana 8 · F',lab:'Lab 1',eval:'ACS 8'},
+      {n:9,title:'Matemática: Sistemas de ecuaciones lineales.',align:'Semana 9 · M',lab:'',eval:'ACS 9'},
+      {n:10,title:'Física: Movimiento Circular Uniforme (MCU).',align:'Semana 10 · F',lab:'',eval:'ACS 10'},
+      {n:11,title:'Matemática: Funciones. Concepto. Dominio e imagen.',align:'Semana 11 · M',lab:'',eval:'ACS 11'},
+      {n:12,title:'Física: Fuerza. Leyes de Newton.',align:'Semana 12 · F',lab:'Lab 2',eval:'ACS 12'},
+      {n:13,title:'Matemática: Función lineal y afín. Gráficas.',align:'Semana 13 · M',lab:'',eval:'ACS 13'},
+      {n:14,title:'Física: Fuerza de rozamiento. Plano inclinado.',align:'Semana 14 · F',lab:'',eval:'ACS 14'},
+      {n:15,title:'Matemática: Función cuadrática. Gráficas.',align:'Semana 15 · M',lab:'',eval:'ACS 15'},
+      {n:16,title:'Física: Trabajo y Energía. Potencia.',align:'Semana 16 · F',lab:'',eval:'ACS 16'},
+      {n:17,title:'Matemática: Progresiones. Aritméticas y geométricas.',align:'Semana 17 · M',lab:'',eval:'ACS 17'},
+      {n:18,title:'Física: Conservación de la energía.',align:'Semana 18 · F',lab:'Lab 3',eval:'ACS 18'},
+      {n:19,title:'Matemática: Teorema de Pitágoras. Aplicaciones.',align:'Semana 19 · M',lab:'',eval:'ACS 19'},
+      {n:20,title:'Física: Impulso y cantidad de movimiento. Choques.',align:'Semana 20 · F',lab:'',eval:'ACS 20'},
+      {n:21,title:'Matemática: Trigonometría. Razones trigonométricas.',align:'Semana 21 · M',lab:'',eval:'ACS 21'},
+      {n:22,title:'Física: Repaso integrador (Mecánica).',align:'Semana 22 · F',lab:'',eval:'ACS 22'},
+      {n:23,title:'Matemática: Cuerpos geométricos. Áreas y volúmenes.',align:'Semana 23 · M',lab:'',eval:'ACS 23'},
+      {n:24,title:'Física: Hidrostática. Presión. Principio de Pascal.',align:'Semana 24 · F',lab:'',eval:'ACS 24'},
+      {n:25,title:'Matemática: Estadística descriptiva. Gráficos.',align:'Semana 25 · M',lab:'',eval:'ACS 25'},
+      {n:26,title:'Física: Hidrodinámica. Principio de Bernoulli.',align:'Semana 26 · F',lab:'',eval:'ACS 26'},
+      {n:27,title:'Matemática: Probabilidad. Cálculo elemental.',align:'Semana 27 · M',lab:'',eval:'ACS 27'},
+      {n:28,title:'Física: Calor y Temperatura.',align:'Semana 28 · F',lab:'',eval:'ACS 28'},
+      {n:29,title:'Matemática: Repaso integrador (Álgebra y Funciones).',align:'Semana 29 · M',lab:'',eval:'ACS 29'},
+      {n:30,title:'Física: Repaso integrador (Hidráulica y Calor).',align:'Semana 30 · F',lab:'',eval:'ACS 30'},
+      {n:31,title:'Matemática: Ejercicios integradores.',align:'Semana 31 · M',lab:'',eval:'ACS 31'},
+      {n:32,title:'Física: Ejercicios integradores.',align:'Semana 32 · F',lab:'',eval:'ACS 32'}
+    ],
+    note:'La secuencia es flexible y se ajustará según el progreso del grupo. Cada guía se publica semanalmente en GitHub Pages y se comparte por WhatsApp.'
+  }
+];
+
+/* ═══════════════ 2. CURSOR ═══════════════ */
+(function initCursor(){
+  if (isTouch || reduceMotion) return;
+  const cursor = $('cursor');
+  const dot = $('cursorDot');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  let dirty = false, active = false;
+
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    if (!active) { active = true; document.body.classList.add('cursor-active'); }
+    dirty = true;
+    schedule(cursorTick);
+  }, { passive: true });
+
+  document.addEventListener('mouseleave', () => {
+    active = false;
+    document.body.classList.remove('cursor-active');
+  });
+
+  function cursorTick(){
+    if (!dirty) return;
+    rx += (mx - rx) * 0.18;
+    ry += (my - ry) * 0.18;
+    if (Math.abs(mx - rx) < 0.2 && Math.abs(my - ry) < 0.2) {
+      rx = mx; ry = my; dirty = false;
+    } else {
+      schedule(cursorTick);
+    }
+    dot.style.transform = `translate3d(${mx}px,${my}px,0) translate(-50%,-50%)`;
+    cursor.style.transform = `translate3d(${rx}px,${ry}px,0) translate(-50%,-50%)`;
+  }
+
+  document.addEventListener('mouseover', e => {
+    if (e.target.closest('a,button,.card,.tab,input,.chip,.tag,.week__day,.rubric__item,.tl-step,.publish-mode')) {
+      cursor.classList.add('is-hover');
+    }
+  });
+  document.addEventListener('mouseout', e => {
+    if (e.target.closest('a,button,.card,.tab,input,.chip,.tag,.week__day,.rubric__item,.tl-step,.publish-mode')) {
+      cursor.classList.remove('is-hover');
+    }
+  });
+})();
+
+/* ═══════════════ 3. THREE.JS ═══════════════ */
+(function init3D(){
+  if (reduceMotion || reduceData) return;
+
+  const canvas = $('hero-canvas');
+  const scene = new THREE.Scene();
+  scene.fog = new THREE.FogExp2(0x07070f, 0.03);
+
+  const camera = new THREE.PerspectiveCamera(70, innerWidth/innerHeight, 0.1, 100);
+  camera.position.set(0, 0, 12);
+
+  const renderer = new THREE.WebGLRenderer({
+    canvas, alpha: true, antialias: !isMobile,
+    powerPreference: 'high-performance'
+  });
+  const maxDPR = isMobile ? 1.25 : 1.75;
+  renderer.setPixelRatio(Math.min(devicePixelRatio, maxDPR));
+  renderer.setSize(innerWidth, innerHeight);
+  renderer.setClearColor(0x000000, 0);
+
+  const COUNT = isMobile ? 300 : 700;
+  const positions = new Float32Array(COUNT * 3);
+  const colors = new Float32Array(COUNT * 3);
+  const palette = [0x6d5efc, 0x22d3ee, 0xf472b6, 0xa78bfa];
+  const col = new THREE.Color();
+
+  for (let i = 0; i < COUNT; i++) {
+    const r = 6 + Math.random() * 14;
+    const theta = Math.random() * Math.PI * 2;
+    const phi = Math.acos(2 * Math.random() - 1);
+    positions[i*3]   = r * Math.sin(phi) * Math.cos(theta);
+    positions[i*3+1] = r * Math.sin(phi) * Math.sin(theta) * 0.7;
+    positions[i*3+2] = r * Math.cos(phi);
+    col.setHex(palette[(Math.random() * 4) | 0]);
+    colors[i*3]   = col.r;
+    colors[i*3+1] = col.g;
+    colors[i*3+2] = col.b;
+  }
+  const pGeo = new THREE.BufferGeometry();
+  pGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+  pGeo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+  const pMat = new THREE.PointsMaterial({
+    size: 0.09, vertexColors: true, transparent: true, opacity: 0.85,
+    blending: THREE.AdditiveBlending, depthWrite: false, sizeAttenuation: true
+  });
+  const particles = new THREE.Points(pGeo, pMat);
+  scene.add(particles);
+
+  const CONNECT = isMobile ? 40 : 90;
+  const linePositions = new Float32Array(CONNECT * 6);
+  for (let i = 0; i < CONNECT; i++) {
+    const a = (Math.random() * COUNT * 3) | 0;
+    const b = (Math.random() * COUNT * 3) | 0;
+    linePositions[i*6]   = positions[a];
+    linePositions[i*6+1] = positions[a+1];
+    linePositions[i*6+2] = positions[a+2];
+    linePositions[i*6+3] = positions[b];
+    linePositions[i*6+4] = positions[b+1];
+    linePositions[i*6+5] = positions[b+2];
+  }
+  const netGeo = new THREE.BufferGeometry();
+  netGeo.setAttribute('position', new THREE.BufferAttribute(linePositions, 3));
+  const netMat = new THREE.LineBasicMaterial({
+    color: 0x6d5efc, transparent: true, opacity: 0.08,
+    blending: THREE.AdditiveBlending, depthWrite: false
+  });
+  const net = new THREE.LineSegments(netGeo, netMat);
+  scene.add(net);
+
+  const icoMat = new THREE.MeshBasicMaterial({ color: 0x6d5efc, wireframe: true, transparent: true, opacity: 0.35, blending: THREE.AdditiveBlending, depthWrite: false });
+  const ico = new THREE.Mesh(new THREE.IcosahedronGeometry(3.2, 0), icoMat);
+  scene.add(ico);
+
+  const ico2Mat = new THREE.MeshBasicMaterial({ color: 0x22d3ee, wireframe: true, transparent: true, opacity: 0.25, blending: THREE.AdditiveBlending, depthWrite: false });
+  const ico2 = new THREE.Mesh(new THREE.IcosahedronGeometry(2.6, 0), ico2Mat);
+  scene.add(ico2);
+
+  const knotMat = new THREE.MeshBasicMaterial({ color: 0xf472b6, wireframe: true, transparent: true, opacity: 0.18, blending: THREE.AdditiveBlending, depthWrite: false });
+  const knot = new THREE.Mesh(new THREE.TorusKnotGeometry(1.3, 0.32, 64, 8), knotMat);
+  knot.position.set(6, -2, -4);
+  scene.add(knot);
+
+  const torusMat = new THREE.MeshBasicMaterial({ color: 0xa78bfa, transparent: true, opacity: 0.4, blending: THREE.AdditiveBlending, depthWrite: false });
+  const torus = new THREE.Mesh(new THREE.TorusGeometry(1.8, 0.06, 8, 60), torusMat);
+  torus.position.set(-6, 2, -2);
+  scene.add(torus);
+
+  const mouse = { x: 0, y: 0, tx: 0, ty: 0 };
+  if (!isTouch) {
+    document.addEventListener('mousemove', e => {
+      mouse.tx = (e.clientX / innerWidth) * 2 - 1;
+      mouse.ty = -(e.clientY / innerHeight) * 2 + 1;
+    }, { passive: true });
+  }
+
+  let scrollY = 0;
+  window.addEventListener('scroll', () => { scrollY = window.scrollY; }, { passive: true });
+
+  let resizeTO;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTO);
+    resizeTO = setTimeout(() => {
+      const w = innerWidth, h = innerHeight;
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+      renderer.setSize(w, h);
+      renderer.setPixelRatio(Math.min(devicePixelRatio, maxDPR));
+    }, 150);
+  }, { passive: true });
+
+  let heroVisible = true;
+  const hero = $('inicio');
+  new IntersectionObserver(([e]) => {
+    heroVisible = e.isIntersecting;
+    if (heroVisible && !running) start();
+  }, { threshold: 0 }).observe(hero);
+
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden && heroVisible && !running) start();
+  });
+
+  const clock = new THREE.Clock();
+  let running = false;
+  let lastTime = 0;
+  const FRAME_INTERVAL = isMobile ? 1000/30 : 1000/60;
+
+  function tick(){
+    if (!running) return;
+    const t = clock.getElapsedTime();
+    const now = performance.now();
+    if (isMobile && now - lastTime < FRAME_INTERVAL) {
+      requestAnimationFrame(tick);
+      return;
+    }
+    lastTime = now;
+
+    mouse.x += (mouse.tx - mouse.x) * 0.05;
+    mouse.y += (mouse.ty - mouse.y) * 0.05;
+
+    particles.rotation.y = t * 0.02 + mouse.x * 0.25;
+    particles.rotation.x = mouse.y * 0.15;
+    net.rotation.y = particles.rotation.y;
+    net.rotation.x = particles.rotation.x;
+
+    ico.rotation.y = t * 0.18 + mouse.x * 0.5;
+    ico.rotation.x = t * 0.12 + mouse.y * 0.4;
+    ico2.rotation.y = -t * 0.24 + mouse.x * 0.6;
+    ico2.rotation.z = t * 0.1;
+    knot.rotation.y = t * 0.22;
+    knot.rotation.x = t * 0.16;
+    torus.rotation.y = -t * 0.3;
+    torus.rotation.z = t * 0.2;
+
+    const sy = scrollY * 0.0015;
+    camera.position.x += (mouse.x * 0.8 - camera.position.x) * 0.04;
+    camera.position.y += (mouse.y * 0.8 + sy - camera.position.y) * 0.04;
+    camera.lookAt(0, 0, 0);
+
+    const fade = Math.max(0, 1 - scrollY / 900);
+    pMat.opacity = 0.85 * fade;
+    netMat.opacity = 0.08 * fade;
+    icoMat.opacity = 0.35 * fade;
+    ico2Mat.opacity = 0.25 * fade;
+    knotMat.opacity = 0.18 * fade;
+    torusMat.opacity = 0.4 * fade;
+
+    renderer.render(scene, camera);
+    requestAnimationFrame(tick);
+  }
+
+  function start(){
+    if (running) return;
+    running = true;
+    clock.start();
+    requestAnimationFrame(tick);
+  }
+  start();
+})();
+
+/* ═══════════════ 4. NAVEGACIÓN ═══════════════ */
+(function initNav(){
+  const nav = $('nav');
+  const navLinks = $('navLinks');
+  const burger = $('burger');
+  const scrollBar = $('scrollBar');
+
+  burger.addEventListener('click', () => navLinks.classList.toggle('is-open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('is-open')));
+
+  document.addEventListener('click', e => {
+    if (navLinks.classList.contains('is-open') &&
+        !navLinks.contains(e.target) && !burger.contains(e.target)) {
+      navLinks.classList.remove('is-open');
+    }
+  });
+
+  let lastY = 0, ticking = false;
+  window.addEventListener('scroll', () => {
+    if (ticking) return;
+    ticking = true;
+    schedule(() => {
+      const y = window.scrollY;
+      if (Math.abs(y - lastY) > 2) {
+        nav.classList.toggle('is-scrolled', y > 40);
+        const max = document.documentElement.scrollHeight - innerHeight;
+        scrollBar.style.width = `${(y / max) * 100}%`;
+        lastY = y;
+      }
+      ticking = false;
+    });
+  }, { passive: true });
+
+  const sections = document.querySelectorAll('section[id]');
+  const anchors = document.querySelectorAll('.nav__link');
+  const io = new IntersectionObserver(entries => {
+    for (const e of entries) {
+      if (e.isIntersecting) {
+        const id = e.target.id;
+        anchors.forEach(a => a.classList.toggle('is-active', a.getAttribute('href') === `#${id}`));
+      }
+    }
+  }, { rootMargin: '-40% 0px -55% 0px' });
+  sections.forEach(s => io.observe(s));
+
+  const themeToggle = $('themeToggle');
+  const saved = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', saved);
+  themeToggle.addEventListener('click', () => {
+    const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+  });
+})();
+
+/* ═══════════════ 5. REVEAL + CONTADORES ═══════════════ */
+(function initReveal(){
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('is-visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  const counters = document.querySelectorAll('[data-count]');
+  const cio = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target;
+      const target = +el.dataset.count;
+      const dur = 1400;
+      const start = performance.now();
+      (function step(now){
+        const p = Math.min((now - start) / dur, 1);
+        el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3)));
+        if (p < 1) requestAnimationFrame(step);
+      })(start);
+      cio.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+  counters.forEach(c => cio.observe(c));
+})();
+
+/* ═══════════════ 6. TILT 3D ═══════════════ */
+(function initTilt(){
+  if (isTouch || reduceMotion) return;
+
+  const SELECTOR = '.card, .week__day, .rubric__item, .tl-step';
+  let currentEl = null, rect = null, pending = false, lastX = 0, lastY = 0;
+
+  function applyTilt(){
+    if (!currentEl || !rect) { pending = false; return; }
+    const x = (lastX - rect.left) / rect.width;
+    const y = (lastY - rect.top) / rect.height;
+    const rotX = (0.5 - y) * 6;
+    const rotY = (x - 0.5) * 6;
+    currentEl.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateZ(6px)`;
+    currentEl.style.setProperty('--mx', `${x*100}%`);
+    currentEl.style.setProperty('--my', `${y*100}%`);
+    pending = false;
+  }
+
+  document.addEventListener('mousemove', e => {
+    const el = e.target.closest(SELECTOR);
+    if (el !== currentEl) {
+      if (currentEl) {
+        currentEl.style.transform = '';
+        currentEl.style.removeProperty('--mx');
+        currentEl.style.removeProperty('--my');
+      }
+      currentEl = el;
+      rect = el ? el.getBoundingClientRect() : null;
+    }
+    if (currentEl) {
+      lastX = e.clientX; lastY = e.clientY;
+      if (!pending) { pending = true; schedule(applyTilt); }
+    }
+  }, { passive: true });
+
+  window.addEventListener('scroll', () => { if (currentEl) rect = currentEl.getBoundingClientRect(); }, { passive: true });
+  window.addEventListener('resize', () => { if (currentEl) rect = currentEl.getBoundingClientRect(); }, { passive: true });
+
+  document.addEventListener('mouseleave', () => {
+    if (currentEl) {
+      currentEl.style.transform = '';
+      currentEl.style.removeProperty('--mx');
+      currentEl.style.removeProperty('--my');
+      currentEl = null; rect = null;
+    }
+  });
+})();
+
+/* ═══════════════ 7. RENDER PROGRAMAS ═══════════════ */
+(function renderPrograms(){
+  const tabsEl = $('programTabs');
+  const viewEl = $('programView');
+  let active = 0;
+
+  function renderTabs(){
+    tabsEl.innerHTML = PROGRAMS.map((p, i) => `
+      <button class="tab ${i === active ? 'is-active' : ''}" data-idx="${i}">
+        <span class="tab__emoji">${p.emoji}</span><span>${p.name}</span>
+      </button>
+    `).join('');
+    tabsEl.querySelectorAll('.tab').forEach(btn => {
+      btn.addEventListener('click', () => {
+        active = +btn.dataset.idx;
+        renderTabs();
+        renderProgram();
+      }, { passive: true });
+    });
+  }
+
+  function renderProgram(){
+    const p = PROGRAMS[active];
+    const rows = p.guides.map((g, i) => {
+      const cls = g.eval === 'Oral' ? 'oral-chip' : 'acs-chip';
+      return `<tr style="--row-i:${i}">
+        <td>${g.n}</td>
+        <td>Guía ${g.n}</td>
+        <td><strong>${g.title}</strong></td>
+        <td>${g.align}</td>
+        <td>${g.lab ? `<span class="lab-chip">🧪 ${g.lab}</span>` : '<span style="color:var(--text-3)">—</span>'}</td>
+        <td><span class="${cls}">${g.eval}</span></td>
+      </tr>`;
+    }).join('');
+
+    viewEl.innerHTML = `
+      <div class="program__head">
+        <div>
+          <h3 class="program__title">${p.emoji} ${p.name}</h3>
+          <p class="program__meta">
+            <strong>Grado:</strong> ${p.grade} · <strong>Frecuencia:</strong> ${p.frequency} ·
+            <strong>Centro:</strong> ${p.center}<br>
+            <strong>Profesor:</strong> ${p.teacher}
+          </p>
+        </div>
+        <div class="program__badges">
+          <span class="badge-pill">${p.subject}</span>
+          <span class="badge-pill">${p.guides.length} guías</span>
+          <span class="badge-pill">38 semanas</span>
+        </div>
+      </div>
+      <div class="program__table">
+        <table>
+          <thead><tr>
+            <th>#</th><th>Guía</th><th>Tema / Contenido</th>
+            <th>Alineación</th><th>Lab. Virtual</th><th>Evaluación</th>
+          </tr></thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </div>
+      <div class="program__note">${p.note}</div>
+    `;
+  }
+
+  renderTabs();
+  renderProgram();
+})();
+
+/* ═══════════════ 8. GITHUB · PUBLICACIÓN COMPLETA ═══════════════ */
+(function initGitHub(){
+  if (!document.documentElement.classList.contains('is-admin')) return;
+
+  const consoleEl = $('console');
+  const statusEl = $('status');
+  const statusText = statusEl.querySelector('.status__text');
+  const btnPublishAll = $('btnPublishAll');
+  const btnPublishAllLabel = $('btnPublishAllLabel');
+  const btnOpenSite = $('btnOpenSite');
+  const htmlSourceField = $('htmlSourceField');
+  const htmlFileInput = $('htmlFile');
+  const GH = 'https://api.github.com';
+
+  let lastPublishedUrl = null;
+
+  function log(msg, type = 'info') {
+    const line = document.createElement('div');
+    line.className = `console__line console__line--${type}`;
+    const t = new Date().toLocaleTimeString('es-ES', { hour12: false });
+    line.textContent = `[${t}] › ${msg}`;
+    consoleEl.appendChild(line);
+    consoleEl.scrollTop = consoleEl.scrollHeight;
+  }
+  function setStatus(kind, text) {
+    statusEl.className = `status${kind ? ' is-' + kind : ''}`;
+    statusText.textContent = text;
+  }
+  function setBusy(busy, label) {
+    btnPublishAll.disabled = busy;
+    if (label) btnPublishAllLabel.textContent = label;
+  }
+  async function apiError(res, fallback) {
+    try { const d = await res.json(); return d.message || fallback; }
+    catch { return fallback || `HTTP ${res.status}`; }
+  }
+  function headers(cfg) {
+    return {
+      'Authorization': `token ${cfg.token}`,
+      'Accept': 'application/vnd.github+json',
+      'Content-Type': 'application/json',
+      'X-GitHub-Api-Version': '2022-11-28'
+    };
+  }
+  function getMode(){
+    const el = document.querySelector('input[name="pubmode"]:checked');
+    return el ? el.value : 'all';
+  }
+
+  try {
+    const cfg = JSON.parse(localStorage.getItem('gh-config') || '{}');
+    ['owner','repo','branch','path','message'].forEach(k => { if (cfg[k]) $(k).value = cfg[k]; });
+    if (cfg.token) $('token').value = cfg.token;
+    if (cfg.mode) {
+      const radio = document.querySelector(`input[name="pubmode"][value="${cfg.mode}"]`);
+      if (radio) radio.checked = true;
+    }
+  } catch(e){}
+
+  function getConfig(){
+    let branch = ($('branch').value || '').trim().replace(/^\/+|\/+$/g, '');
+    let path   = ($('path').value   || '').trim().replace(/^\/+/, '');
+    return {
+      token:   $('token').value.trim(),
+      owner:   $('owner').value.trim(),
+      repo:    $('repo').value.trim(),
+      branch:  branch,
+      path:    path || 'data/programas.json',
+      message: $('message').value.trim() || 'Actualizar programas complementarios',
+      mode:    getMode()
+    };
+  }
+  function saveConfig(){
+    if (!$('remember').checked) { localStorage.removeItem('gh-config'); return; }
+    try { localStorage.setItem('gh-config', JSON.stringify(getConfig())); } catch(e){}
+  }
+  ['owner','repo','branch','path','message','token','remember'].forEach(id => {
+    $(id).addEventListener('change', saveConfig);
+  });
+  document.querySelectorAll('input[name="pubmode"]').forEach(r => {
+    r.addEventListener('change', saveConfig);
+  });
+  $('toggleToken').addEventListener('click', () => {
+    const t = $('token');
+    t.type = t.type === 'password' ? 'text' : 'password';
+  });
+
+  async function verifyToken(cfg){
+    if (!cfg.token) throw new Error('Falta el token de GitHub.');
+    if (!/^ghp_|^github_pat_/.test(cfg.token)) {
+      log('⚠️ El token no parece tener el formato clásico (ghp_...). Se intentará igualmente.', 'pending');
+    }
+    const res = await fetch(`${GH}/user`, { headers: headers(cfg) });
+    if (res.status === 401) throw new Error('Token inválido, expirado o revocado.');
+    if (res.status === 403) throw new Error('Token sin permisos suficientes (necesita scope "repo").');
+    if (!res.ok) throw new Error(await apiError(res, `No se pudo verificar el token (HTTP ${res.status})`));
+    const user = await res.json();
+    log(`✅ Autenticado como @${user.login}`, 'ok');
+    return user;
+  }
+
+  async function ensureRepo(cfg, user){
+    log(`🔍 Verificando repositorio ${cfg.owner}/${cfg.repo}…`, 'pending');
+    const res = await fetch(`${GH}/repos/${cfg.owner}/${cfg.repo}`, { headers: headers(cfg) });
+
+    if (res.ok) {
+      const repo = await res.json();
+      log(`✅ Repositorio encontrado · rama por defecto: "${repo.default_branch}"`, 'ok');
+      return repo;
+    }
+    if (res.status !== 404) {
+      throw new Error(await apiError(res, `Error al verificar el repositorio (HTTP ${res.status})`));
+    }
+
+    const isUserRepo = cfg.owner.toLowerCase() === user.login.toLowerCase();
+    const createUrl = isUserRepo ? `${GH}/user/repos` : `${GH}/orgs/${cfg.owner}/repos`;
+
+    log(`📦 El repositorio no existe. Creando ${cfg.owner}/${cfg.repo}…`, 'pending');
+    const createRes = await fetch(createUrl, {
+      method: 'POST',
+      headers: headers(cfg),
+      body: JSON.stringify({
+        name: cfg.repo,
+        description: 'Programas complementarios virtuales de Matemática y Física',
+        private: false,
+        auto_init: true,
+        has_issues: true,
+        has_projects: false,
+        has_wiki: false
+      })
+    });
+
+    if (!createRes.ok) {
+      const msg = await apiError(createRes, `No se pudo crear el repositorio (HTTP ${createRes.status})`);
+      if (createRes.status === 403) throw new Error(`Sin permiso para crear repositorios en "${cfg.owner}". Verifica el scope "repo". (${msg})`);
+      if (createRes.status === 404 && !isUserRepo) throw new Error(`La organización "${cfg.owner}" no existe o tu token no tiene acceso. (${msg})`);
+      throw new Error(msg);
+    }
+
+    const repo = await createRes.json();
+    log(`✅ Repositorio creado: ${repo.full_name}`, 'ok');
+    log(`🌿 Rama por defecto: "${repo.default_branch}"`, 'info');
+    log('⏳ Esperando inicialización de GitHub…', 'pending');
+    await new Promise(r => setTimeout(r, 2500));
+    return repo;
+  }
+
+  async function ensureBranch(cfg, repo){
+    const defaultBranch = repo.default_branch || 'main';
+
+    if (!cfg.branch) {
+      cfg.branch = defaultBranch;
+      $('branch').value = defaultBranch;
+      log(`🌿 Sin rama especificada · usando "${defaultBranch}".`, 'info');
+      return defaultBranch;
+    }
+
+    log(`🌿 Verificando rama "${cfg.branch}"…`, 'pending');
+    const res = await fetch(
+      `${GH}/repos/${cfg.owner}/${cfg.repo}/branches/${encodeURIComponent(cfg.branch)}`,
+      { headers: headers(cfg) }
+    );
+
+    if (res.ok) { log(`✅ Rama "${cfg.branch}" disponible.`, 'ok'); return cfg.branch; }
+    if (res.status !== 404) throw new Error(await apiError(res, `Error al verificar la rama (HTTP ${res.status})`));
+
+    if (cfg.branch === defaultBranch) {
+      log(`📭 El repositorio está vacío. La rama "${defaultBranch}" se creará con el primer commit.`, 'info');
+      return defaultBranch;
+    }
+
+    log(`🔎 Obteniendo commit base de "${defaultBranch}"…`, 'pending');
+    const refRes = await fetch(
+      `${GH}/repos/${cfg.owner}/${cfg.repo}/git/ref/heads/${encodeURIComponent(defaultBranch)}`,
+      { headers: headers(cfg) }
+    );
+
+    if (!refRes.ok) {
+      log(`⚠️ No se pudo obtener la base. Se usará "${defaultBranch}" en su lugar.`, 'pending');
+      $('branch').value = defaultBranch;
+      cfg.branch = defaultBranch;
+      saveConfig();
+      return defaultBranch;
+    }
+    const baseSha = (await refRes.json()).object.sha;
+
+    log(`🌱 Creando rama "${cfg.branch}" desde "${defaultBranch}"…`, 'pending');
+    const createRes = await fetch(
+      `${GH}/repos/${cfg.owner}/${cfg.repo}/git/refs`,
+      {
+        method: 'POST',
+        headers: headers(cfg),
+        body: JSON.stringify({ ref: `refs/heads/${cfg.branch}`, sha: baseSha })
+      }
+    );
+
+    if (!createRes.ok) {
+      const msg = await apiError(createRes, 'No se pudo crear la rama');
+      log(`⚠️ Falló la creación de la rama: ${msg}`, 'pending');
+      log(`↪ Usando "${defaultBranch}" en su lugar.`, 'info');
+      $('branch').value = defaultBranch;
+      cfg.branch = defaultBranch;
+      saveConfig();
+      return defaultBranch;
+    }
+
+    log(`✅ Rama "${cfg.branch}" creada correctamente.`, 'ok');
+    return cfg.branch;
+  }
+
+  async function uploadFile(cfg, branch, filePath, content, commitMsg){
+    const apiUrl = `${GH}/repos/${cfg.owner}/${cfg.repo}/contents/${filePath}`;
+
+    const getRes = await fetch(`${apiUrl}?ref=${encodeURIComponent(branch)}`, { headers: headers(cfg) });
+    let sha = null;
+    if (getRes.ok) {
+      sha = (await getRes.json()).sha;
+      log(`📄 ${filePath} · existente (sha ${sha.slice(0,7)}…). Actualizando.`, 'info');
+    } else if (getRes.status === 404) {
+      log(`📄 ${filePath} · nuevo. Creando.`, 'info');
+    } else {
+      throw new Error(await apiError(getRes, `No se pudo consultar ${filePath} (HTTP ${getRes.status})`));
+    }
+
+    const bytes = new TextEncoder().encode(content);
+    let binary = '';
+    for (let i = 0; i < bytes.length; i++) binary += String.fromCharCode(bytes[i]);
+    const b64 = btoa(binary);
+
+    const putRes = await fetch(apiUrl, {
+      method: 'PUT',
+      headers: headers(cfg),
+      body: JSON.stringify({
+        message: commitMsg,
+        content: b64,
+        branch,
+        ...(sha ? { sha } : {})
+      })
+    });
+
+    if (!putRes.ok) throw new Error(await apiError(putRes, `Error al subir ${filePath} (HTTP ${putRes.status})`));
+    const result = await putRes.json();
+    log(`✅ ${filePath} publicado · commit ${result.commit.sha.slice(0,7)}`, 'ok');
+    return result;
+  }
+
+  async function activatePages(cfg, branch){
+    log('🌐 Verificando GitHub Pages…', 'pending');
+
+    const getRes = await fetch(`${GH}/repos/${cfg.owner}/${cfg.repo}/pages`, { headers: headers(cfg) });
+    if (getRes.ok) {
+      const pages = await getRes.json();
+      const url = pages.html_url || `https://${cfg.owner}.github.io/${cfg.repo}/`;
+      log(`✅ GitHub Pages ya está activo · ${url}`, 'ok');
+      return url;
+    }
+    if (getRes.status !== 404) {
+      const msg = await apiError(getRes, `Error al verificar Pages (HTTP ${getRes.status})`);
+      log(`⚠️ ${msg} · Se intentará activar igualmente.`, 'pending');
+    }
+
+    log(`🚀 Activando GitHub Pages (rama: ${branch})…`, 'pending');
+    const enableRes = await fetch(`${GH}/repos/${cfg.owner}/${cfg.repo}/pages`, {
+      method: 'POST',
+      headers: headers(cfg),
+      body: JSON.stringify({ source: { branch, path: '/' } })
+    });
+
+    if (enableRes.ok) {
+      const pages = await enableRes.json();
+      const url = pages.html_url || `https://${cfg.owner}.github.io/${cfg.repo}/`;
+      log(`✅ GitHub Pages activado · ${url}`, 'ok');
+      return url;
+    }
+
+    if (enableRes.status === 409) {
+      const url = `https://${cfg.owner}.github.io/${cfg.repo}/`;
+      log(`ℹ️ Pages ya estaba en configuración · ${url}`, 'info');
+      return url;
+    }
+
+    if (enableRes.status === 403) {
+      const msg = await apiError(enableRes, 'Sin permiso para activar Pages');
+      log(`⚠️ No se pudo activar Pages automáticamente: ${msg}`, 'pending');
+      log('↪ Actívalo manualmente en Settings → Pages.', 'info');
+      return `https://${cfg.owner}.github.io/${cfg.repo}/`;
+    }
+
+    if (enableRes.status === 422) {
+      const msg = await apiError(enableRes, 'Configuración de Pages inválida');
+      log(`⚠️ GitHub rechazó la activación: ${msg}`, 'pending');
+      log('↪ Puede que el repositorio esté vacío. Intenta de nuevo en unos segundos.', 'info');
+      return `https://${cfg.owner}.github.io/${cfg.repo}/`;
+    }
+
+    const msg = await apiError(enableRes, 'No se pudo activar GitHub Pages');
+    log(`⚠️ ${msg}`, 'pending');
+    return `https://${cfg.owner}.github.io/${cfg.repo}/`;
+  }
+
+  async function waitForDeployment(cfg, maxTries = 10){
+    log('⏳ Verificando despliegue (puede tardar 1-2 min)…', 'pending');
+    for (let i = 0; i < maxTries; i++) {
+      await new Promise(r => setTimeout(r, 4000));
+      try {
+        const res = await fetch(
+          `${GH}/repos/${cfg.owner}/${cfg.repo}/pages/builds/latest`,
+          { headers: headers(cfg) }
+        );
+        if (!res.ok) continue;
+        const build = await res.json();
+        if (build.status === 'built') {
+          log(`✅ Despliegue completado · ${build.duration ? Math.round(build.duration/1000) + 's' : 'listo'}`, 'ok');
+          return true;
+        }
+        if (build.status === 'errored') {
+          log(`❌ El despliegue falló: ${build.error?.message || 'error desconocido'}`, 'error');
+          return false;
+        }
+        log(`⏳ Estado: ${build.status}… (${i+1}/${maxTries})`, 'pending');
+      } catch(e) { /* silencioso */ }
+    }
+    log('ℹ️ El despliegue sigue en curso. Tu web estará lista en breve.', 'info');
+    return true;
+  }
+
+  async function getCurrentHtml(){
+    if (htmlFileInput.files && htmlFileInput.files[0]) {
+      const file = htmlFileInput.files[0];
+      log(`📄 Usando archivo seleccionado: ${file.name} (${(file.size/1024).toFixed(1)} KB)`, 'info');
+      return await file.text();
+    }
+
+    try {
+      const url = location.href.split('#')[0].split('?')[0];
+      log(`🔎 Intentando leer ${url}…`, 'pending');
+      const res = await fetch(url, { cache: 'no-store' });
+      if (res.ok) {
+        const html = await res.text();
+        if (html.includes('<!DOCTYPE') || html.includes('<html')) {
+          log(`✅ HTML actual leído (${(html.length/1024).toFixed(1)} KB)`, 'ok');
+          return html;
+        }
+      }
+    } catch(e) { /* silencioso */ }
+
+    log('⚠️ No se pudo leer el HTML automáticamente (probablemente file://).', 'pending');
+    htmlSourceField.hidden = false;
+    htmlFileInput.focus();
+    throw new Error('Selecciona el archivo index.html en el formulario y vuelve a pulsar "Publicar todo".');
+  }
+
+  async function publishAll(){
+    const cfg = getConfig();
+    if (!cfg.token) { log('❌ Falta el token.', 'error'); setStatus('error', 'Token requerido'); return; }
+    if (!cfg.owner) { log('❌ Falta el usuario/organización.', 'error'); setStatus('error', 'Falta el owner'); return; }
+    if (!cfg.repo)  { log('❌ Falta el nombre del repositorio.', 'error'); setStatus('error', 'Falta el repo'); return; }
+
+    log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━', 'info');
+    log('🚀 PUBLICACIÓN COMPLETA INICIADA', 'ok');
+    log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━', 'info');
+
+    let htmlContent = null;
+    if (cfg.mode === 'all' || cfg.mode === 'html') {
+      htmlContent = await getCurrentHtml();
+    }
+
+    const user = await verifyToken(cfg);
+    const repo = await ensureRepo(cfg, user);
+    const branch = await ensureBranch(cfg, repo);
+    saveConfig();
+
+    if (htmlContent) {
+      log('📤 Subiendo index.html…', 'pending');
+      await uploadFile(cfg, branch, 'index.html', htmlContent, 'Actualizar index.html · ' + new Date().toISOString().slice(0,10));
+    }
+
+    if (cfg.mode === 'all' || cfg.mode === 'data') {
+      log('📤 Subiendo data/programas.json…', 'pending');
+      const json = JSON.stringify(PROGRAMS, null, 2);
+      await uploadFile(cfg, branch, cfg.path, json, cfg.message);
+    }
+
+    let url = `https://${cfg.owner}.github.io/${cfg.repo}/`;
+    if (cfg.mode === 'all' || cfg.mode === 'html') {
+      url = await activatePages(cfg, branch);
+      lastPublishedUrl = url;
+      btnOpenSite.hidden = false;
+      btnOpenSite.dataset.url = url;
+    }
+
+    if (cfg.mode === 'all' || cfg.mode === 'html') {
+      await waitForDeployment(cfg);
+    }
+
+    log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━', 'ok');
+    log(`🎉 COMPLETADO · ${url}`, 'ok');
+    log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━', 'ok');
+    setStatus('ok', `Publicado · ${url.replace(/^https?:\/\//,'')}`);
+  }
+
+  btnPublishAll.addEventListener('click', async () => {
+    setBusy(true, 'Publicando…');
+    setStatus('pending', 'Publicando…');
+    try {
+      await publishAll();
+    } catch (err) {
+      log(`❌ ${err.message}`, 'error');
+      setStatus('error', err.message.slice(0, 70));
+    } finally {
+      setBusy(false, 'Publicar todo');
+    }
+  });
+
+  $('btnTest').addEventListener('click', async () => {
+    setStatus('pending', 'Verificando…');
+    try {
+      const cfg = getConfig();
+      if (!cfg.token) throw new Error('Falta el token.');
+      const user = await verifyToken(cfg);
+
+      if (cfg.owner && cfg.repo) {
+        const res = await fetch(`${GH}/repos/${cfg.owner}/${cfg.repo}`, { headers: headers(cfg) });
+        if (res.ok) {
+          const repo = await res.json();
+          const defaultBranch = repo.default_branch || 'main';
+          log(`✅ Repositorio encontrado · rama por defecto: "${defaultBranch}"`, 'ok');
+
+          const branch = cfg.branch || defaultBranch;
+          const br = await fetch(
+            `${GH}/repos/${cfg.owner}/${cfg.repo}/branches/${encodeURIComponent(branch)}`,
+            { headers: headers(cfg) }
+          );
+          if (br.ok) {
+            log(`✅ Rama "${branch}" disponible.`, 'ok');
+          } else if (br.status === 404) {
+            log(`⚠️ La rama "${branch}" no existe todavía. Se creará al publicar.`, 'pending');
+          }
+
+          const pagesRes = await fetch(`${GH}/repos/${cfg.owner}/${cfg.repo}/pages`, { headers: headers(cfg) });
+          if (pagesRes.ok) {
+            const pages = await pagesRes.json();
+            log(`✅ GitHub Pages activo · ${pages.html_url}`, 'ok');
+            btnOpenSite.hidden = false;
+            btnOpenSite.dataset.url = pages.html_url;
+          } else {
+            log(`ℹ️ GitHub Pages no está activado todavía. Se activará al publicar.`, 'info');
+          }
+
+          setStatus('ok', `Listo · ${cfg.owner}/${cfg.repo}@${branch}`);
+        } else if (res.status === 404) {
+          log(`📦 El repositorio "${cfg.owner}/${cfg.repo}" no existe. Se creará al publicar.`, 'info');
+          setStatus('pending', `Se creará el repo al publicar`);
+        } else {
+          throw new Error(await apiError(res, 'Error al verificar repositorio'));
+        }
+      } else {
+        setStatus('ok', `Conectado como @${user.login}`);
+      }
+    } catch (err) {
+      log(`❌ ${err.message}`, 'error');
+      setStatus('error', err.message.slice(0, 70));
+    }
+  });
+
+  btnOpenSite.addEventListener('click', () => {
+    const url = btnOpenSite.dataset.url || lastPublishedUrl;
+    if (url) window.open(url, '_blank', 'noopener');
+  });
+
+  $('btnDownload').addEventListener('click', () => {
+    const blob = new Blob([JSON.stringify(PROGRAMS, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = 'programas.json'; a.click();
+    URL.revokeObjectURL(url);
+    log('📥 programas.json descargado localmente.', 'ok');
+  });
+
+  $('btnClear').addEventListener('click', () => {
+    ['token','owner','repo','branch','path','message'].forEach(id => $(id).value = '');
+    localStorage.removeItem('gh-config');
+    setStatus('', 'Sin conexión verificada');
+    btnOpenSite.hidden = true;
+    log('🧹 Configuración limpiada.', 'info');
+  });
+
+  if (location.protocol === 'file:') {
+    htmlSourceField.hidden = false;
+    log('ℹ️ Ejecutando desde file:// · Deberás seleccionar el index.html antes de publicar todo.', 'info');
+  }
+})();
+
+/* ═══════════════ 9. CONTADOR DE VISITAS ═══════════════ */
+(function initVisitCounter(){
+  const badge = $('visitBadge');
+  const numEl = $('visitNum');
+  if (!badge || !numEl) return;
+
+  const NS  = 'programas-complementarios-isniel';
+  const KEY = 'visitas-globales';
+
+  let localCount = 0;
+  try { localCount = parseInt(localStorage.getItem('local-visit-count') || '0', 10) || 0; } catch(e){}
+
+  const isNewSession = !sessionStorage.getItem('visit-session-counted');
+  if (isNewSession) {
+    localCount += 1;
+    try { localStorage.setItem('local-visit-count', String(localCount)); } catch(e){}
+  }
+
+  numEl.textContent = localCount.toLocaleString('es-ES');
+
+  function animateTo(target){
+    const current = parseInt(numEl.textContent.replace(/\D/g,''), 10) || 0;
+    if (target === current) return;
+    const dur = 1100;
+    const start = performance.now();
+    (function step(now){
+      const p = Math.min((now - start) / dur, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      numEl.textContent = Math.round(current + (target - current) * eased).toLocaleString('es-ES');
+      if (p < 1) requestAnimationFrame(step);
+    })(start);
+  }
+
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 6000);
+
+  const endpoint = isNewSession
+    ? `https://api.counterapi.dev/v1/${NS}/${KEY}/up`
+    : `https://api.counterapi.dev/v1/${NS}/${KEY}/`;
+
+  fetch(endpoint, { signal: controller.signal })
+    .then(r => {
+      clearTimeout(timeoutId);
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      return r.json();
+    })
+    .then(data => {
+      const globalCount = parseInt(data.count ?? data.value ?? data, 10);
+      if (!isNaN(globalCount) && globalCount > 0) {
+        animateTo(globalCount);
+        badge.classList.remove('is-loading', 'is-local');
+        badge.classList.add('is-live');
+        try { sessionStorage.setItem('visit-session-counted', '1'); } catch(e){}
+      } else {
+        throw new Error('Formato inesperado');
+      }
+    })
+    .catch(() => {
+      clearTimeout(timeoutId);
+      badge.classList.remove('is-loading');
+      badge.classList.add('is-local');
+      badge.title = `Contador local (sin conexión): ${localCount} visitas en este dispositivo`;
+    });
+})();
+</script>
+</body>
+</html>
